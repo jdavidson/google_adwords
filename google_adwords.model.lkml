@@ -6,6 +6,8 @@ include: "*.view"
 # include all the dashboards
 include: "*.dashboard"
 
+explore: report_stats {}
+
 ## Entity tables are daily snapshots
 explore: customer {
   hidden: yes
@@ -274,12 +276,54 @@ explore: geo_stats {
   label: "Geo Stats"
   view_label: "Geo Stats"
 
+#   join: geo_country {
+#     from: geo_criteria_20170420
+#     view_label: "Country"
+#     fields: [name, country_code]
+#     sql_on: ${geo_stats.country_criteria_id} = ${geo_country.criteria_id} ;;
+#     relationship: many_to_one
+#   }
+
+  join: geo_us_state {
+    from: geo_criteria_20170420
+    view_label: "US State"
+    fields: [name]
+    sql_on: ${geo_stats.region_criteria_id} = ${geo_us_state.criteria_id} AND
+      ${geo_us_state.parent_id} = 2840 AND ${geo_us_state.target_type} = 'State' ;;
+    relationship: many_to_one
+  }
+#
+#   join: geo_region {
+#     from: geo_criteria_20170420
+#     view_label: "Region"
+#     fields: [name]
+#     sql_on: ${geo_stats.city_criteria_id} = ${geo_region.criteria_id} ;;
+#     relationship: many_to_one
+#   }
+#
+#   join: geo_metro {
+#     from: geo_criteria_20170420
+#     view_label: "Metro"
+#     fields: [name]
+#     sql_on: ${geo_stats.city_criteria_id} = ${geo_metro.criteria_id} ;;
+#     relationship: many_to_one
+#   }
+#
+#   join: geo_city {
+#     from: geo_criteria_20170420
+#     view_label: "City"
+#     fields: [name]
+#     sql_on: ${geo_stats.city_criteria_id} = ${geo_city.criteria_id} ;;
+#     relationship: many_to_one
+#   }
+#
   join: ad_group {
     view_label: "Ad Groups"
     sql_on: ${geo_stats.ad_group_id} = ${ad_group.ad_group_id} AND
       ${geo_stats._data_raw} = ${ad_group._data_raw} ;;
     relationship: many_to_one
   }
+
   join: campaign {
     view_label: "Campaigns"
     sql_on: ${geo_stats.campaign_id} = ${campaign.campaign_id} AND
@@ -390,12 +434,12 @@ explore: campaign_quarter_stats {
       ${campaign_quarter_stats._data_last_quarter} = ${last_campaign_quarter_stats._data_quarter} ;;
     relationship: one_to_one
   }
-#   join: campaign {
-#     view_label: "Campaign"
-#     sql_on: ${campaign_quarter_stats.campaign_id} = ${campaign.campaign_id} AND
-#       ${campaign.latest} = 'Yes' ;;
-#     relationship: many_to_one
-#   }
+  join: campaign {
+    view_label: "Campaign"
+    sql_on: ${campaign_quarter_stats.campaign_id} = ${campaign.campaign_id} AND
+      ${campaign.latest} = 'Yes' ;;
+    relationship: many_to_one
+  }
 }
 
 explore: hourly_campaign_stats {

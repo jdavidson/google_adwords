@@ -9,11 +9,6 @@ view: stats {
     sql: (${cost} / 1000000) ;;
   }
 
-  dimension: cost_usd_per_click {
-    type: number
-    sql: ${cost_usd}/(NULLIF(${clicks},0)) ;;
-  }
-
   measure: total_cost {
     hidden: yes
     type: sum
