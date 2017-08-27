@@ -3,11 +3,18 @@ include: "stats.view.lkml"
 view: base_report_stats  {
   extends: [stats]
 
-  dimension: week {
+  dimension: month {
     type: date
     allow_fill: no
     convert_tz: no
-    sql: ${TABLE}.Week ;;
+    sql: ${TABLE}.Month ;;
+  }
+
+  dimension: quarter {
+    type: date_quarter
+    allow_fill: no
+    convert_tz: no
+    sql: ${TABLE}.Month ;;
   }
 
   dimension: state {
@@ -56,7 +63,7 @@ view: report_stats {
   extends: [base_report_stats]
   derived_table: {
     sql: SELECT
-  FORMAT_TIMESTAMP('%F', TIMESTAMP_TRUNC(TIMESTAMP_ADD(TIMESTAMP_TRUNC(CAST(TIMESTAMP(geo_stats._DATA_DATE)  AS TIMESTAMP), DAY), INTERVAL (0 - CAST((CASE WHEN (EXTRACT(DAYOFWEEK FROM TIMESTAMP(geo_stats._DATA_DATE) ) - 1) - 1 + 7 < 0 THEN -1 * (ABS((EXTRACT(DAYOFWEEK FROM TIMESTAMP(geo_stats._DATA_DATE) ) - 1) - 1 + 7) - (ABS(7) * CAST(FLOOR(ABS(((EXTRACT(DAYOFWEEK FROM TIMESTAMP(geo_stats._DATA_DATE) ) - 1) - 1 + 7) / (7))) AS INT64))) ELSE ABS((EXTRACT(DAYOFWEEK FROM TIMESTAMP(geo_stats._DATA_DATE) ) - 1) - 1 + 7) - (ABS(7) * CAST(FLOOR(ABS(((EXTRACT(DAYOFWEEK FROM TIMESTAMP(geo_stats._DATA_DATE) ) - 1) - 1 + 7) / (7))) AS INT64)) END) AS INT64)) DAY), DAY)) AS Week,
+  CONCAT(FORMAT_TIMESTAMP('%Y-%m', TIMESTAMP(geo_stats._DATA_DATE) ), "-01") AS month,
   geo_us_state.Name  AS State,
   CASE
     WHEN geo_stats.Device LIKE '%Desktop%' THEN "Desktop"
