@@ -17,6 +17,11 @@ view: base_report_stats  {
     sql: ${TABLE}.Month ;;
   }
 
+  dimension: campaignname {
+    type: string
+    sql: ${TABLE}.CampaignName ;;
+  }
+
   dimension: state {
     map_layer_name: us_states
     type: string
@@ -63,7 +68,8 @@ view: report_stats {
   extends: [base_report_stats]
   derived_table: {
     sql: SELECT
-  CONCAT(FORMAT_TIMESTAMP('%Y-%m', TIMESTAMP(geo_stats._DATA_DATE) ), "-01") AS month,
+  CONCAT(FORMAT_TIMESTAMP('%Y-%m', TIMESTAMP(geo_stats._DATA_DATE) ), "-01") AS Month,
+  campaign.CampaignName  AS CampaignName,
   geo_us_state.Name  AS State,
   CASE
     WHEN geo_stats.Device LIKE '%Desktop%' THEN "Desktop"
@@ -91,7 +97,7 @@ LEFT JOIN adwords_v201609.geo_criteria_20170420  AS geo_us_state ON geo_stats.Re
 LEFT JOIN adwords_v201609.Campaign_6747157124  AS campaign ON geo_stats.CampaignId = campaign.CampaignId AND
       (TIMESTAMP(geo_stats._DATA_DATE)) = (TIMESTAMP(campaign._DATA_DATE))
 
-GROUP BY 1,2,3,4
+GROUP BY 1,2,3,4,5
       ;;
     persist_for: "24 hours"
   }
