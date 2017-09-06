@@ -16,7 +16,7 @@
       label: Delta
       expression: "(${report_stats.total_cost_usd} - offset(${report_stats.total_cost_usd},1))"
       value_format:
-      value_format_name: percent_0
+      value_format_name: usd_0
       _kind_hint: measure
     custom_color_enabled: false
     custom_color: forestgreen
@@ -83,7 +83,6 @@
     ordering: none
     show_null_labels: false
     series_types: {}
-
   - name: conversions
     title: Conversions
     model: google_adwords
@@ -98,7 +97,7 @@
       label: Delta
       expression: "(${report_stats.total_conversions} - offset(${report_stats.total_conversions},1))"
       value_format:
-      value_format_name: percent_0
+      value_format_name:
       _kind_hint: measure
     custom_color_enabled: false
     custom_color: forestgreen
