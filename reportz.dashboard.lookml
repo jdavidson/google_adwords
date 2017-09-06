@@ -14,8 +14,7 @@
     dynamic_fields:
     - table_calculation: delta
       label: Delta
-      expression: "(${report_stats.total_cost_usd} - offset(${report_stats.total_cost_usd},1))\
-        \ / offset(${report_stats.total_cost_usd},1)"
+      expression: "(${report_stats.total_cost_usd} - offset(${report_stats.total_cost_usd},1))"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
@@ -97,8 +96,7 @@
     dynamic_fields:
     - table_calculation: delta
       label: Delta
-      expression: "(${report_stats.total_conversions} - offset(${report_stats.total_conversions},1))\
-        \ / offset(${report_stats.total_conversions},1)"
+      expression: "(${report_stats.total_conversions} - offset(${report_stats.total_conversions},1))"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
