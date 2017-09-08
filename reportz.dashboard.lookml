@@ -1,5 +1,5 @@
 - dashboard: digital_marketing
-  title: Dashboard
+  title: ""
   layout: newspaper
   elements:
   - name: spend
