@@ -16,24 +16,28 @@ view: stats {
   }
 
   measure: total_cost_usd {
+    label: "Cost"
     type: sum
     sql: ${cost_usd} ;;
     value_format_name: usd_0
   }
 
   measure: total_conversions {
+    label: "Conversions"
     type: sum
     sql: ${conversions} ;;
     value_format_name: decimal_0
   }
 
   measure: total_impressions {
+    label: "Impressions"
     type:  sum
     sql:  ${impressions} ;;
     drill_fields: [external_customer_id, total_impressions]
   }
 
   measure: total_interactions {
+    label: "Interactions"
     type:  sum
     sql:  ${interactions} ;;
     drill_fields: [external_customer_id, total_impressions]

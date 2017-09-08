@@ -18,22 +18,26 @@ view: base_report_stats  {
   }
 
   dimension: campaignname {
+    label: "Campaign"
     type: string
     sql: ${TABLE}.CampaignName ;;
   }
 
   dimension: state {
+    label: "State"
     map_layer_name: us_states
     type: string
     sql: ${TABLE}.state ;;
   }
 
   dimension: device {
+    label: "Device"
     type: string
     sql: ${TABLE}.Device ;;
   }
 
   dimension: adnetworktype {
+    label: "Ad Network"
     type: string
     sql: ${TABLE}.AdNetworkType ;;
   }
