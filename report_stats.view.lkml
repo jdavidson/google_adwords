@@ -72,11 +72,11 @@ view: report_stats {
   CASE
       WHEN campaign.CampaignName = "NA - Search - Competition" THEN "NA - Search - Competition"
       WHEN campaign.CampaignName = "NA - Search - BI - Tool" THEN "NA - Search - Widget"
-      WHEN campaign.CampaignName = "NA - Search - Business Intelligence Software" THEN "EU - Search - Widget"
+      WHEN campaign.CampaignName = "NA - Search - Business Intelligence Software" THEN "NA - Search - Gizmo"
       WHEN campaign.CampaignName = "NA - Display - Remarketing Image Nov 2016" THEN "NA - Display - Image"
       WHEN campaign.CampaignName = "NA - Search - Brand" THEN "NA - Search - Brand"
       WHEN campaign.CampaignName = "NA - Search - Data Visualization" THEN "NA - Search - Gadget"
-      WHEN campaign.CampaignName = "NA - Search - Data Analytics Tools" THEN "EU - Search - Gadget"
+      WHEN campaign.CampaignName = "NA - Search - Data Analytics Tools" THEN "NA - Search - Tool"
       ELSE "US - Display - Gadget" END AS CampaignName,
   geo_us_state.Name  AS State,
   CASE
