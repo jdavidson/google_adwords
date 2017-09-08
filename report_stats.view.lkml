@@ -69,28 +69,31 @@ view: report_stats {
   derived_table: {
     sql: SELECT
   CONCAT(FORMAT_TIMESTAMP('%Y-%m', TIMESTAMP(geo_stats._DATA_DATE) ), "-01") AS Month,
-  campaign.CampaignName  AS CampaignName,
+  CASE
+      WHEN campaign.CampaignName = "NA - Search - Competition" THEN "NA - Search - Competition"
+      WHEN campaign.CampaignName = "EU - Search - Competition" THEN "EU - Search - Competition"
+      WHEN campaign.CampaignName = "NA - Search - BI - Tool" THEN "NA - Search - Widget"
+      WHEN campaign.CampaignName = "NA - Search - Business Intelligence Software" THEN "EU - Search - Widget"
+      WHEN campaign.CampaignName = "Australia - Search - Competition" THEN "Australia - Search - Competition"
+      WHEN campaign.CampaignName = "NA - Display - Remarketing Image Nov 2016" THEN "NA - Display - Image"
+      WHEN campaign.CampaignName = "NA - Search - Brand" THEN "NA - Search - Brand"
+      WHEN campaign.CampaignName = "NA - Search - Data Visualization" THEN "NA - Search - Gadget"
+      WHEN campaign.CampaignName = "Australia- Search - BI - Tools" THEN "Australia - Search - Widget"
+      WHEN campaign.CampaignName = "NA - Search - Data Analytics Tools" THEN "EU - Search - Gadget"
+      ELSE "US - Display - Gadget" END AS CampaignName,
   geo_us_state.Name  AS State,
   CASE
     WHEN geo_stats.Device LIKE '%Desktop%' THEN "Desktop"
     WHEN geo_stats.Device LIKE '%Mobile%' THEN "Mobile"
-    WHEN geo_stats.Device LIKE '%Tablet%' THEN "Tablet"
-    ELSE "Unknown" END AS Device,
+    ELSE "Tablet" END AS Device,
   CASE
-    WHEN geo_stats.AdNetworkType1 = 'SHASTA_AD_NETWORK_TYPE_1_SEARCH' AND geo_stats.AdNetworkType2 = 'SHASTA_AD_NETWORK_TYPE_2_SEARCH'
-      THEN 'Search'
-    WHEN geo_stats.AdNetworkType1 = 'SHASTA_AD_NETWORK_TYPE_1_SEARCH' AND geo_stats.AdNetworkType2 = 'SHASTA_AD_NETWORK_TYPE_2_SEARCH_PARTNERS'
-      THEN 'Search Partners'
-    WHEN geo_stats.AdNetworkType1 = 'SHASTA_AD_NETWORK_TYPE_1_CONTENT'
-      THEN 'Content'
-    ELSE 'Other'
-    END
-    AS AdNetworkType,
-  COALESCE(SUM(geo_stats.Cost), 0) AS Cost,
-  COALESCE(SUM(geo_stats.Conversions ), 0) AS Conversions,
-  COALESCE(SUM(geo_stats.Clicks ), 0) AS Clicks,
-  COALESCE(SUM(geo_stats.Interactions ), 0) AS Interactions,
-  COALESCE(SUM(geo_stats.Impressions ), 0) AS Impressions
+    WHEN geo_stats.AdNetworkType1 = 'SHASTA_AD_NETWORK_TYPE_1_SEARCH' THEN 'Search'
+    ELSE 'Content' END AS AdNetworkType,
+  COALESCE(ROUND(SUM(geo_stats.Cost) * ((RAND() * 9) + 1)), 0) AS Cost,
+  COALESCE(ROUND(SUM(geo_stats.Conversions ) * ((RAND() * 9) + 1)), 0) AS Conversions,
+  COALESCE(ROUND(SUM(geo_stats.Clicks ) * ((RAND() * 9) + 1)), 0) AS Clicks,
+  COALESCE(ROUND(SUM(geo_stats.Interactions * ((RAND() * 9) + 1) )), 0) AS Interactions,
+  COALESCE(ROUND(SUM(geo_stats.Impressions * ((RAND() * 9) + 1) )), 0) AS Impressions
 FROM adwords_v201609.GeoStats_6747157124  AS geo_stats
 LEFT JOIN adwords_v201609.geo_criteria_20170420  AS geo_us_state ON geo_stats.RegionCriteriaId = geo_us_state.Criteria_ID AND
       geo_us_state.Parent_ID = 2840 AND geo_us_state.Target_Type = 'State'
