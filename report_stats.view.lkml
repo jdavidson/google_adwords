@@ -71,14 +71,11 @@ view: report_stats {
   CONCAT(FORMAT_TIMESTAMP('%Y-%m', TIMESTAMP(geo_stats._DATA_DATE) ), "-01") AS Month,
   CASE
       WHEN campaign.CampaignName = "NA - Search - Competition" THEN "NA - Search - Competition"
-      WHEN campaign.CampaignName = "EU - Search - Competition" THEN "EU - Search - Competition"
       WHEN campaign.CampaignName = "NA - Search - BI - Tool" THEN "NA - Search - Widget"
       WHEN campaign.CampaignName = "NA - Search - Business Intelligence Software" THEN "EU - Search - Widget"
-      WHEN campaign.CampaignName = "Australia - Search - Competition" THEN "Australia - Search - Competition"
       WHEN campaign.CampaignName = "NA - Display - Remarketing Image Nov 2016" THEN "NA - Display - Image"
       WHEN campaign.CampaignName = "NA - Search - Brand" THEN "NA - Search - Brand"
       WHEN campaign.CampaignName = "NA - Search - Data Visualization" THEN "NA - Search - Gadget"
-      WHEN campaign.CampaignName = "Australia- Search - BI - Tools" THEN "Australia - Search - Widget"
       WHEN campaign.CampaignName = "NA - Search - Data Analytics Tools" THEN "EU - Search - Gadget"
       ELSE "US - Display - Gadget" END AS CampaignName,
   geo_us_state.Name  AS State,
