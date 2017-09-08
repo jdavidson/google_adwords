@@ -568,7 +568,7 @@
     hidden_fields:
     series_types: {}
   - name: funnel
-    title: Funnel by Device
+    title: Funnel by Ad Network
     model: google_adwords
     explore: report_stats
     type: looker_column
