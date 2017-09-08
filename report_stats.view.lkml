@@ -84,8 +84,7 @@ view: report_stats {
   geo_us_state.Name  AS State,
   CASE
     WHEN geo_stats.Device LIKE '%Desktop%' THEN "Desktop"
-    WHEN geo_stats.Device LIKE '%Mobile%' THEN "Mobile"
-    ELSE "Tablet" END AS Device,
+    ELSE "Mobile" END AS Device,
   CASE
     WHEN geo_stats.AdNetworkType1 = 'SHASTA_AD_NETWORK_TYPE_1_SEARCH' THEN 'Search'
     ELSE 'Content' END AS AdNetworkType,
