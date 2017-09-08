@@ -1,5 +1,5 @@
 - dashboard: digital_marketing
-  title: Digital Marketing
+  title: ""
   layout: newspaper
   elements:
   - name: spend
@@ -84,7 +84,7 @@
     show_null_labels: false
     series_types: {}
   - name: conversions
-    title: Conversions
+    title: Conversions QTD
     model: google_adwords
     explore: report_stats
     type: single_value
@@ -166,7 +166,7 @@
     series_types: {}
 
   - name: cost_per_conversion
-    title: Cost per Conversions
+    title: Cost per Conversion QTD
     model: google_adwords
     explore: report_stats
     type: single_value
@@ -213,7 +213,7 @@
     totals_color: "#808080"
     series_types: {}
   - name: cost_per_conversion_over_time
-    title: Cost per Conversion
+    title: ""
     model: google_adwords
     explore: report_stats
     type: looker_area
@@ -250,7 +250,7 @@
 
 
   - name: conversion_rate
-    title: ""
+    title: Conversion Rate QTD
     model: google_adwords
     explore: report_stats
     type: single_value
@@ -297,7 +297,7 @@
     totals_color: "#808080"
     series_types: {}
   - name: conversion_rate_over_time
-    title: Conversion Rate
+    title: ""
     model: google_adwords
     explore: report_stats
     type: looker_area
@@ -333,7 +333,7 @@
     series_types: {}
 
   - name: cost_per_interaction
-    title: Cost per Interaction
+    title: Cost per Interaction QTD
     model: google_adwords
     explore: report_stats
     type: single_value
@@ -416,7 +416,7 @@
     series_types: {}
 
   - name: interaction_rate
-    title: Interaction Rate
+    title: Interaction Rate QTD
     model: google_adwords
     explore: report_stats
     type: single_value
@@ -499,7 +499,7 @@
     series_types: {}
 
   - name: us_map
-    title: US Map
+    title: Cost per Conversion Map
     model: google_adwords
     explore: report_stats
     type: looker_geo_choropleth
@@ -533,7 +533,7 @@
     totals_color: "#808080"
     series_types: {}
   - name: device
-    title: Device
+    title: Conversions by Device
     model: google_adwords
     explore: report_stats
     type: looker_pie
@@ -568,7 +568,7 @@
     hidden_fields:
     series_types: {}
   - name: funnel
-    title: Funnel
+    title: Funnel by Device
     model: google_adwords
     explore: report_stats
     type: looker_column
