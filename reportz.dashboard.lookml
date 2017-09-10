@@ -247,8 +247,6 @@
     ordering: none
     show_null_labels: false
     series_types: {}
-
-
   - name: conversion_rate
     title: Conversion Rate QTD
     model: google_adwords
@@ -331,7 +329,6 @@
     ordering: none
     show_null_labels: false
     series_types: {}
-
   - name: cost_per_interaction
     title: Cost per Interaction QTD
     model: google_adwords
@@ -414,7 +411,6 @@
     ordering: none
     show_null_labels: false
     series_types: {}
-
   - name: interaction_rate
     title: Interaction Rate QTD
     model: google_adwords
@@ -623,14 +619,12 @@
             name: Report Stats Total Impressions}, {id: report_stats.total_interactions,
             name: Report Stats Total Interactions}, {id: report_stats.total_cost_usd,
             name: Report Stats Total Cost USD}]}]
-
   - name: campaign_details
     title: Campaign Details
     model: google_adwords
     explore: report_stats
     type: table
-    fields: [report_stats.total_cost_usd, report_stats.total_conversions, report_stats.average_cost_per_conversion,
-      report_stats.campaignname]
+    fields: [report_stats.campaignname, report_stats.total_cost_usd, report_stats.average_interaction_rate, report_stats.average_cost_per_interaction, report_stats.average_conversion_rate, report_stats.average_cost_per_conversion]
     sorts: [report_stats.total_cost_usd desc]
     limit: 10
     column_limit: 50

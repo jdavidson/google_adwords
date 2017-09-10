@@ -81,7 +81,7 @@ view: report_stats {
       WHEN campaign.CampaignName = "NA - Search - Brand" THEN "NA - Search - Brand"
       WHEN campaign.CampaignName = "NA - Search - Data Visualization" THEN "NA - Search - Gadget"
       WHEN campaign.CampaignName = "NA - Search - Data Analytics Tools" THEN "NA - Search - Tool"
-      ELSE "US - Display - Gadget" END AS CampaignName,
+      ELSE "NA - Display - Gadget" END AS CampaignName,
   geo_us_state.Name  AS State,
   CASE
     WHEN geo_stats.Device LIKE '%Desktop%' THEN "Desktop"
