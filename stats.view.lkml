@@ -34,6 +34,7 @@ view: stats {
     type:  sum
     sql:  ${impressions} ;;
     drill_fields: [external_customer_id, total_impressions]
+    value_format_name: decimal_0
   }
 
   measure: total_interactions {
@@ -41,6 +42,7 @@ view: stats {
     type:  sum
     sql:  ${interactions} ;;
     drill_fields: [external_customer_id, total_impressions]
+    value_format_name: decimal_0
   }
 
   measure: total_clicks {
