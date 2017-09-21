@@ -4,7 +4,7 @@
   elements:
   - name: spend
     title: Spend QTD
-    model: google_adwords
+    model: adwords_demo
     explore: report_stats
     type: single_value
     fields: [report_stats.month, report_stats.total_cost_usd]
@@ -50,7 +50,7 @@
     series_types: {}
   - name: spend_over_time
     title: ""
-    model: google_adwords
+    model: adwords_demo
     explore: report_stats
     type: looker_area
     fields: [report_stats.month, report_stats.total_cost_usd]
@@ -85,7 +85,7 @@
     series_types: {}
   - name: conversions
     title: Conversions QTD
-    model: google_adwords
+    model: adwords_demo
     explore: report_stats
     type: single_value
     fields: [report_stats.month, report_stats.total_conversions]
@@ -131,7 +131,7 @@
     series_types: {}
   - name: conversions_over_time
     title: ""
-    model: google_adwords
+    model: adwords_demo
     explore: report_stats
     type: looker_area
     fields: [report_stats.month, report_stats.total_conversions]
@@ -167,7 +167,7 @@
 
   - name: cost_per_conversion
     title: Cost per Conversion QTD
-    model: google_adwords
+    model: adwords_demo
     explore: report_stats
     type: single_value
     fields: [report_stats.month, report_stats.average_cost_per_conversion]
@@ -214,7 +214,7 @@
     series_types: {}
   - name: cost_per_conversion_over_time
     title: ""
-    model: google_adwords
+    model: adwords_demo
     explore: report_stats
     type: looker_area
     fields: [report_stats.month, report_stats.average_cost_per_conversion]
@@ -249,7 +249,7 @@
     series_types: {}
   - name: conversion_rate
     title: Conversion Rate QTD
-    model: google_adwords
+    model: adwords_demo
     explore: report_stats
     type: single_value
     fields: [report_stats.month, report_stats.average_conversion_rate]
@@ -296,7 +296,7 @@
     series_types: {}
   - name: conversion_rate_over_time
     title: ""
-    model: google_adwords
+    model: adwords_demo
     explore: report_stats
     type: looker_area
     fields: [report_stats.month, report_stats.average_conversion_rate]
@@ -331,7 +331,7 @@
     series_types: {}
   - name: cost_per_interaction
     title: Cost per Interaction QTD
-    model: google_adwords
+    model: adwords_demo
     explore: report_stats
     type: single_value
     fields: [report_stats.month, report_stats.average_cost_per_interaction]
@@ -378,7 +378,7 @@
     series_types: {}
   - name: cost_per_interaction_over_time
     title: ""
-    model: google_adwords
+    model: adwords_demo
     explore: report_stats
     type: looker_area
     fields: [report_stats.month, report_stats.average_cost_per_interaction]
@@ -413,7 +413,7 @@
     series_types: {}
   - name: interaction_rate
     title: Interaction Rate QTD
-    model: google_adwords
+    model: adwords_demo
     explore: report_stats
     type: single_value
     fields: [report_stats.month, report_stats.average_interaction_rate]
@@ -460,7 +460,7 @@
     series_types: {}
   - name: interaction_rate_over_time
     title: ""
-    model: google_adwords
+    model: adwords_demo
     explore: report_stats
     type: looker_area
     fields: [report_stats.month, report_stats.average_interaction_rate]
@@ -496,7 +496,7 @@
 
   - name: us_map
     title: Cost per Conversion Map
-    model: google_adwords
+    model: adwords_demo
     explore: report_stats
     type: looker_geo_choropleth
     fields: [report_stats.average_cost_per_conversion, report_stats.state]
@@ -530,7 +530,7 @@
     series_types: {}
   - name: device
     title: Conversions by Device
-    model: google_adwords
+    model: adwords_demo
     explore: report_stats
     type: looker_pie
     fields: [report_stats.device, report_stats.total_conversions]
@@ -565,7 +565,7 @@
     series_types: {}
   - name: funnel
     title: Funnel by Ad Network
-    model: google_adwords
+    model: adwords_demo
     explore: report_stats
     type: looker_column
     fields: [report_stats.adnetworktype, report_stats.total_impressions, report_stats.total_interactions,
@@ -621,7 +621,7 @@
             name: Report Stats Total Cost USD}]}]
   - name: campaign_details
     title: Campaign Details
-    model: google_adwords
+    model: adwords_demo
     explore: report_stats
     type: table
     fields: [report_stats.campaignname, report_stats.total_cost_usd, report_stats.average_interaction_rate, report_stats.average_cost_per_interaction, report_stats.average_conversion_rate, report_stats.average_cost_per_conversion]
@@ -669,7 +669,7 @@
     series_types: {}
   - name: stacked_area
     title: "Ad Network Cost over Time"
-    model: google_adwords
+    model: adwords_demo
     explore: report_stats
     type: looker_area
     fields: [report_stats.month, report_stats.total_cost_usd, report_stats.adnetworktype]
@@ -723,8 +723,8 @@
     y_axes: [{label: '', maxValue: !!null '', minValue: !!null '', orientation: left,
         showLabels: true, showValues: true, tickDensity: default, tickDensityCustom: 5,
         type: log, unpinAxis: false, valueFormat: !!null '', series: [{id: report_stats.total_impressions,
-            name: Report Stats Total Impressions, __FILE: google_adwords/reportz.dashboard.lookml,
+            name: Report Stats Total Impressions, __FILE: adwords_demo/reportz.dashboard.lookml,
             __LINE_NUM: 626}, {id: report_stats.total_interactions, name: Report Stats
-              Total Interactions, __FILE: google_adwords/reportz.dashboard.lookml, __LINE_NUM: 627},
-          {id: report_stats.total_cost_usd, name: Report Stats Total Cost USD, __FILE: google_adwords/reportz.dashboard.lookml,
-            __LINE_NUM: 628}], __FILE: google_adwords/reportz.dashboard.lookml, __LINE_NUM: 624}]
+              Total Interactions, __FILE: adwords_demo/reportz.dashboard.lookml, __LINE_NUM: 627},
+          {id: report_stats.total_cost_usd, name: Report Stats Total Cost USD, __FILE: adwords_demo/reportz.dashboard.lookml,
+            __LINE_NUM: 628}], __FILE: adwords_demo/reportz.dashboard.lookml, __LINE_NUM: 624}]

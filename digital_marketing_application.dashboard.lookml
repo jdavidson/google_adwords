@@ -4,7 +4,7 @@
   elements:
   - name: Average cost per conversion over time
     title: Average cost per conversion over time
-    model: google_adwords
+    model: adwords_demo
     explore: account_basic_stats
     type: looker_line
     fields:
@@ -93,7 +93,7 @@
     height: 5
   - name: Device network multiples
     title: Device network multiples
-    model: google_adwords
+    model: adwords_demo
     explore: account_basic_stats
     type: looker_donut_multiples
     fields:
@@ -177,7 +177,7 @@
     height: 7
   - name: Campaign details
     title: Campaign details
-    model: google_adwords
+    model: adwords_demo
     explore: campaign_basic_stats
     type: table
     fields:
@@ -238,7 +238,7 @@
     height: 7
 #   - name: Ad spend qtd
 #     title: Ad spend qtd
-#     model: google_adwords
+#     model: adwords_demo
 #     explore: account_quarter_stats
 #     type: single_value
 #     fields:
@@ -299,7 +299,7 @@
 #     height: 2
 #   - name: Cost per conversion qtd
 #     title: Cost per conversion qtd
-#     model: google_adwords
+#     model: adwords_demo
 #     explore: account_quarter_stats
 #     type: single_value
 #     fields:
@@ -360,7 +360,7 @@
 #     height: 2
 #   - name: Conversion rate qtd
 #     title: Conversion rate qtd
-#     model: google_adwords
+#     model: adwords_demo
 #     explore: account_quarter_stats
 #     type: single_value
 #     fields:
@@ -421,7 +421,7 @@
 #     height: 2
 #   - name: Conversions qtd
 #     title: Conversions qtd
-#     model: google_adwords
+#     model: adwords_demo
 #     explore: account_quarter_stats
 #     type: single_value
 #     fields:
@@ -482,7 +482,7 @@
 #     height: 2
 #   - name: Interaction rate qtd
 #     title: Interaction rate qtd
-#     model: google_adwords
+#     model: adwords_demo
 #     explore: account_quarter_stats
 #     type: single_value
 #     fields:
@@ -544,7 +544,7 @@
 #     height: 2
 #   - name: Cost per interaction qtd
 #     title: Cost per interaction qtd
-#     model: google_adwords
+#     model: adwords_demo
 #     explore: account_quarter_stats
 #     type: single_value
 #     fields:
@@ -605,7 +605,7 @@
 #     height: 2
 #   - name: us_map
 #     title: US Map
-#     model: google_adwords
+#     model: adwords_demo
 #     explore: account_basic_stats
 #     type: looker_geo_choropleth
 #     fields: [geo_us_state.name, account_basic_stats.average_cost_per_conversion]
@@ -640,7 +640,7 @@
 #     series_types: {}
   - name: interaction_rate_over_time
     title: Interaction Rate
-    model: google_adwords
+    model: adwords_demo
     explore: account_basic_stats
     type: looker_area
     fields: [account_basic_stats._data_week, account_basic_stats.average_interaction_rate]
@@ -676,7 +676,7 @@
     series_types: {}
   - name: cost_per_interaction_over_time
     title: Cost per Interaction
-    model: google_adwords
+    model: adwords_demo
     explore: account_basic_stats
     type: looker_area
     fields: [account_basic_stats._data_week, account_basic_stats.average_cost_per_interaction]
@@ -712,7 +712,7 @@
     series_types: {}
   - name: conversion_rate_over_time
     title: Conversion Rate
-    model: google_adwords
+    model: adwords_demo
     explore: account_basic_stats
     type: looker_area
     fields: [account_basic_stats._data_week, account_basic_stats.average_conversion_rate]
@@ -748,7 +748,7 @@
     series_types: {}
   - name: cost_per_conversion_over_time
     title: Cost per Conversion
-    model: google_adwords
+    model: adwords_demo
     explore: account_basic_stats
     type: looker_area
     fields: [account_basic_stats._data_week, account_basic_stats.average_cost_per_conversion]
@@ -784,7 +784,7 @@
     series_types: {}
   - name: conversions_over_time
     title: Conversions
-    model: google_adwords
+    model: adwords_demo
     explore: account_basic_stats
     type: looker_area
     fields: [account_basic_stats._data_week, account_basic_stats.total_conversions]
@@ -820,7 +820,7 @@
     series_types: {}
   - name: spend_over_time
     title: Spend
-    model: google_adwords
+    model: adwords_demo
     explore: account_basic_stats
     type: looker_area
     fields: [account_basic_stats._data_week, account_basic_stats.total_cost_usd]
