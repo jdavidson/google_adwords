@@ -70,12 +70,21 @@ view: campaign {
 
   dimension: campaign_name {
     type: string
-    sql: ${TABLE}.CampaignName ;;
+    sql: CASE
+      WHEN ${TABLE}.CampaignName = "NA - Search - Competition" THEN "NA - Search - Competition"
+      WHEN ${TABLE}.CampaignName = "NA - Search - BI - Tool" THEN "NA - Search - Widget"
+      WHEN ${TABLE}.CampaignName = "NA - Search - Business Intelligence Software" THEN "NA - Search - Gizmo"
+      WHEN ${TABLE}.CampaignName = "NA - Display - Remarketing Image Nov 2016" THEN "NA - Display - Image"
+      WHEN ${TABLE}.CampaignName = "NA - Search - Brand" THEN "NA - Search - Brand"
+      WHEN ${TABLE}.CampaignName = "NA - Search - Data Visualization" THEN "NA - Search - Gadget"
+      WHEN ${TABLE}.CampaignName = "NA - Search - Data Analytics Tools" THEN "NA - Search - Tool"
+      ELSE "NA - Display - Gadget" END AS CampaignName ;;
     link: {
       label: "Campaign Dashboard"
-      url: "/dashboards/adwords_demo::campaign_performance?Campaign%20Name={{ value | encode_uri }}"
+      url: "/dashboards/adwords_demo::campaign_performance?Campaign%Id={{ campaign_id | encode_uri }}"
       icon_url: "http://www.looker.com/favicon.ico"
     }
+    required_fields: [campaign_id]
   }
 
   dimension: campaign_status {

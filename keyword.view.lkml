@@ -77,7 +77,15 @@ view: keyword {
 
   dimension: criteria {
     type: string
-    sql: ${TABLE}.Criteria ;;
+    sql: CASE
+      WHEN ${TABLE}.Criteria = "+tableau" THEN "+gadget"
+      WHEN ${TABLE}.Criteria = "tableau" THEN "gadget"
+      WHEN ${TABLE}.Criteria = "reporting and business intelligence" THEN "widget"
+      WHEN ${TABLE}.Criteria = "AutomaticContent" THEN "gizmo"
+      WHEN ${TABLE}.Criteria = "power bi" THEN "+widget"
+      WHEN ${TABLE}.Criteria = "+alteryx" THEN "+gizmo"
+      WHEN ${TABLE}.Criteria = "business intelligence" THEN "tool"
+      ELSE "+tool" END ;;
   }
 
   dimension: criteria_destination_url {

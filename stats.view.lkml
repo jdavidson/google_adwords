@@ -12,27 +12,27 @@ view: stats {
   measure: total_cost {
     hidden: yes
     type: sum
-    sql: ${cost} ;;
+    sql: (${cost} * ((RAND() * 9) + 1) ;;
   }
 
   measure: total_cost_usd {
     label: "Cost"
     type: sum
-    sql: ${cost_usd} ;;
+    sql:  ${cost_usd} * ((RAND() * 9) + 1) ;;
     value_format_name: usd_0
   }
 
   measure: total_conversions {
     label: "Conversions"
     type: sum
-    sql: ${conversions} ;;
+    sql: ${conversions} * ((RAND() * 9) + 1) ;;
     value_format_name: decimal_0
   }
 
   measure: total_impressions {
     label: "Impressions"
     type:  sum
-    sql:  ${impressions} ;;
+    sql:  ${impressions} * ((RAND() * 9) + 1) ;;
     drill_fields: [external_customer_id, total_impressions]
     value_format_name: decimal_0
   }
@@ -40,14 +40,15 @@ view: stats {
   measure: total_interactions {
     label: "Interactions"
     type:  sum
-    sql:  ${interactions} ;;
+    sql:  ${interactions} * ((RAND() * 9) + 1) ;;
     drill_fields: [external_customer_id, total_impressions]
     value_format_name: decimal_0
   }
 
   measure: total_clicks {
+    label: "Clicks"
     type: sum
-    sql: ${clicks} ;;
+    sql: ${clicks} * ((RAND() * 9) + 1) ;;
     value_format_name: decimal_0
   }
 
