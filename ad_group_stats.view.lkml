@@ -162,9 +162,9 @@ view: ad_group_stats {
     sql: ${TABLE}.Device ;;
   }
 
-  dimension: external_ad_group_id {
+  dimension: external_customer_id {
     type: number
-    sql: ${TABLE}.Externalad_groupId ;;
+    sql: ${TABLE}.ExternalCustomerId ;;
   }
 
   dimension: gmail_forwards {

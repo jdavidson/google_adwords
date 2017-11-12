@@ -8,6 +8,7 @@ view: campaign_quarter_stats {
     sql:
       SELECT
         FORMAT_TIMESTAMP('%Y-%m', TIMESTAMP_TRUNC(CAST(TIMESTAMP(stats._DATA_DATE)  AS TIMESTAMP), QUARTER)) AS quarter
+        , stats.ExternalCustomerId  AS external_customer_id
         , stats.CampaignId  AS campaign_id
         , COALESCE(SUM((stats.Cost) ), 0) AS cost
         , COALESCE(SUM(stats.Clicks ), 0) AS clicks
@@ -50,8 +51,11 @@ view: campaign_quarter_stats {
     convert_tz: no
     sql: CONCAT(${TABLE}.quarter, '-01') ;;
   }
+  dimension: external_customer_id {
+    drill_fields: [campaign.detail*]
+  }
   dimension: campaign_id {
-    drill_fields: [ad_group.name]
+    drill_fields: [campaign.detail*]
   }
   dimension: cost {}
   dimension: clicks {}

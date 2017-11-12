@@ -78,10 +78,10 @@ view: campaign {
       WHEN ${TABLE}.CampaignName = "NA - Search - Brand" THEN "NA - Search - Brand"
       WHEN ${TABLE}.CampaignName = "NA - Search - Data Visualization" THEN "NA - Search - Gadget"
       WHEN ${TABLE}.CampaignName = "NA - Search - Data Analytics Tools" THEN "NA - Search - Tool"
-      ELSE "NA - Display - Gadget" END AS CampaignName ;;
+      ELSE "NA - Display - Gadget" END ;;
     link: {
       label: "Campaign Dashboard"
-      url: "/dashboards/adwords_demo::campaign_performance?Campaign%Id={{ campaign_id | encode_uri }}"
+      url: "/dashboards/adwords_demo::campaign_performance?Campaign%Id={{ campaign_id }}"
       icon_url: "http://www.looker.com/favicon.ico"
     }
     required_fields: [campaign_id]

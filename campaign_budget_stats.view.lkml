@@ -16,6 +16,7 @@ view: campaign_budget_stats {
 #   dimension: cost_usd {}
   derived_table: {
     sql: SELECT
+  campaign.ExternalCustomerId  AS external_customer_id,
   campaign.CampaignId  AS campaign_id,
   campaign.BudgetId  AS budget_id,
   campaign_stats._DATA_DATE AS _DATA_DATE,
@@ -29,6 +30,7 @@ GROUP BY 1,2,3
       ;;
   }
 
+  dimension: external_customer_id {}
   dimension: campaign_id {}
   dimension: budget_id {}
   dimension_group: _data {

@@ -35,7 +35,9 @@ view: keyword {
 
   dimension: bidding_strategy_name {
     type: string
-    sql: ${TABLE}.BiddingStrategyName ;;
+    sql: CASE
+      WHEN ${TABLE}.BiddingStrategyName IS NOT NULL THEN "Advanced"
+      ELSE NULL END ;;
   }
 
   dimension: bidding_strategy_source {
@@ -86,6 +88,11 @@ view: keyword {
       WHEN ${TABLE}.Criteria = "+alteryx" THEN "+gizmo"
       WHEN ${TABLE}.Criteria = "business intelligence" THEN "tool"
       ELSE "+tool" END ;;
+    link: {
+      icon_url: "https://www.google.com/images/branding/product/ico/googleg_lodp.ico"
+      label: "Google Search"
+      url: "https://www.google.com/search?q={{ value | encode_uri}}"
+    }
   }
 
   dimension: criteria_destination_url {

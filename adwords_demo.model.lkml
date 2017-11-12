@@ -6,7 +6,9 @@ include: "*.view"
 # include all the dashboards
 include: "*.dashboard"
 
-explore: report_stats {}
+explore: report_stats {
+  hidden: yes
+}
 
 ## Entity tables are daily snapshots
 explore: customer {
@@ -48,9 +50,15 @@ explore: ad_group {
   }
   join: campaign {
     view_label: "Campaign"
-    sql_on: ${campaign.campaign_id} = ${ad_group.campaign_id} AND
+    sql_on: ${ad_group.campaign_id} = ${campaign.campaign_id} AND
       ${ad_group._data_raw} = ${campaign._data_raw} ;;
     relationship: many_to_one
+  }
+  join: customer {
+    view_label: "Customer"
+    sql_on: ${ad_group.external_customer_id} = ${customer.external_customer_id} AND
+      ${ad_group._data_raw} = ${customer._data_raw} ;;
+    relationship:  many_to_one
   }
 }
 
@@ -69,10 +77,16 @@ explore: keyword {
       ${keyword._data_raw} = ${ad_group._data_raw} ;;
     relationship: many_to_one
   }
-  join: ad {
-    view_label: "Ads"
-    sql_on: ${ad.ad_group_id} = ${ad_group.ad_group_id} AND
-      ${ad._data_raw} = ${ad_group._data_raw} ;;
+  join: campaign {
+    view_label: "Campaign"
+    sql_on: ${keyword.campaign_id} = ${campaign.campaign_id} AND
+      ${keyword._data_raw} = ${campaign._data_raw} ;;
+    relationship: many_to_one
+  }
+  join: customer {
+    view_label: "Customer"
+    sql_on: ${keyword.external_customer_id} = ${customer.external_customer_id} AND
+      ${keyword._data_raw} = ${customer._data_raw} ;;
     relationship:  many_to_one
   }
 }
@@ -94,20 +108,57 @@ explore: ad {
   }
   join: campaign {
     view_label: "Campaign"
-    sql_on: ${campaign.campaign_id} = ${ad_group.campaign_id} AND
-      ${ad_group._data_raw} = ${campaign._data_raw} ;;
+    sql_on: ${ad.campaign_id} = ${campaign.campaign_id} AND
+      ${ad._data_raw} = ${campaign._data_raw} ;;
     relationship: many_to_one
   }
   join: customer {
     view_label: "Customer"
-    sql_on: ${campaign.external_customer_id} = ${customer.external_customer_id} AND
-      ${campaign._data_raw} = ${customer._data_raw} ;;
+    sql_on: ${customer.external_customer_id} = ${customer.external_customer_id} AND
+      ${customer._data_raw} = ${customer._data_raw} ;;
     relationship:  many_to_one
   }
 }
 
 ## Stats tables are used as left-most tables. See "README" for explanation of join logic.
+explore: master_stats {
+  label: "Ad Stats"
+  view_label: "Ad Stats"
+
+  join: keyword {
+    view_label: "Keyword"
+    sql_on: ${master_stats.unique_key} = ${keyword.unique_key} AND
+      ${master_stats._data_raw} = ${keyword._data_raw} ;;
+    relationship: many_to_one
+  }
+  join: ad {
+    view_label: "Ads"
+    sql_on: ${ad.creative_id} = ${master_stats.creative_id} AND
+      ${master_stats._data_raw} = ${ad._data_raw} ;;
+    relationship:  many_to_one
+  }
+  join: ad_group {
+    view_label: "Ad Groups"
+    sql_on: ${master_stats.ad_group_id} = ${ad_group.ad_group_id} AND
+      ${master_stats._data_raw} = ${ad_group._data_raw} ;;
+    relationship: many_to_one
+  }
+  join: campaign {
+    view_label: "Campaigns"
+    sql_on: ${master_stats.campaign_id} = ${campaign.campaign_id} AND
+      ${master_stats._data_raw} = ${campaign._data_raw};;
+    relationship: many_to_one
+  }
+  join: customer {
+    view_label: "Customer"
+    sql_on: ${master_stats.external_customer_id} = ${customer.external_customer_id} AND
+      ${master_stats._data_raw} = ${customer._data_raw} ;;
+    relationship: many_to_one
+  }
+}
+
 explore: ad_stats {
+  hidden: yes
   label: "Ad Stats"
   view_label: "Ad Stats"
 
@@ -119,25 +170,32 @@ explore: ad_stats {
   }
   join: ad {
     view_label: "Ads"
-    sql_on: ${ad.creative_id} = ${ad_stats.creative_id} AND
+    sql_on: ${ad_stats.creative_id} = ${ad.creative_id} AND
       ${ad_stats._data_raw} = ${ad._data_raw} ;;
     relationship:  many_to_one
   }
   join: ad_group {
     view_label: "Ad Groups"
-    sql_on: ${ad.ad_group_id} = ${ad_group.ad_group_id} AND
+    sql_on: ${ad_stats.ad_group_id} = ${ad_group.ad_group_id} AND
       ${ad_stats._data_raw} = ${ad_group._data_raw} ;;
     relationship: many_to_one
   }
   join: campaign {
     view_label: "Campaigns"
-    sql_on: ${ad_group.campaign_id} = ${campaign.campaign_id} AND
+    sql_on: ${ad_stats.campaign_id} = ${campaign.campaign_id} AND
       ${ad_stats._data_raw} = ${campaign._data_raw};;
+    relationship: many_to_one
+  }
+  join: customer {
+    view_label: "Customer"
+    sql_on: ${ad_stats.external_customer_id} = ${customer.external_customer_id} AND
+      ${ad_stats._data_raw} = ${customer._data_raw} ;;
     relationship: many_to_one
   }
 }
 
 explore: ad_basic_stats {
+  hidden: yes
   label: "Ad Stats"
   view_label: "Ad Stats"
 
@@ -149,20 +207,26 @@ explore: ad_basic_stats {
   }
   join: ad {
     view_label: "Ads"
-    sql_on: ${ad.creative_id} = ${ad_basic_stats.creative_id} AND
+    sql_on: ${ad_basic_stats.creative_id} = ${ad.creative_id} AND
       ${ad_basic_stats._data_raw} = ${ad._data_raw} ;;
     relationship:  many_to_one
   }
   join: ad_group {
     view_label: "Ad Groups"
-    sql_on: ${ad.ad_group_id} = ${ad_group.ad_group_id} AND
-      ${ad._data_raw} = ${ad_group._data_raw} ;;
+    sql_on: ${ad_basic_stats.ad_group_id} = ${ad_group.ad_group_id} AND
+      ${ad_basic_stats._data_raw} = ${ad_group._data_raw} ;;
     relationship: many_to_one
   }
   join: campaign {
     view_label: "Campaigns"
-    sql_on: ${ad_group.campaign_id} = ${campaign.campaign_id} AND
-      ${ad_group._data_raw} = ${campaign._data_raw};;
+    sql_on: ${ad_basic_stats.campaign_id} = ${campaign.campaign_id} AND
+      ${ad_basic_stats._data_raw} = ${campaign._data_raw};;
+    relationship: many_to_one
+  }
+  join: customer {
+    view_label: "Customer"
+    sql_on: ${ad_basic_stats.external_customer_id} = ${customer.external_customer_id} AND
+      ${ad_basic_stats._data_raw} = ${customer._data_raw} ;;
     relationship: many_to_one
   }
 }
@@ -177,16 +241,22 @@ explore: hourly_ad_group_stats {
       ${hourly_ad_group_stats._data_raw} = ${ad_group._data_raw} ;;
     relationship: many_to_one
   }
-
   join: campaign {
     view_label: "Campaigns"
-    sql_on: ${ad_group.campaign_id} = ${campaign.campaign_id} AND
+    sql_on: ${hourly_ad_group_stats.campaign_id} = ${campaign.campaign_id} AND
       ${hourly_ad_group_stats._data_raw} = ${campaign._data_raw} ;;
+    relationship: many_to_one
+  }
+  join: customer {
+    view_label: "Customer"
+    sql_on: ${hourly_ad_group_stats.external_customer_id} = ${customer.external_customer_id} AND
+      ${hourly_ad_group_stats._data_raw} = ${customer._data_raw} ;;
     relationship: many_to_one
   }
 }
 
-explore:ad_group_stats {
+explore: ad_group_stats {
+  hidden: yes
   label: "Ad Group Stats"
   view_label: "Ad Group Stats"
 
@@ -196,16 +266,22 @@ explore:ad_group_stats {
       ${ad_group_stats._data_raw} = ${ad_group._data_raw} ;;
     relationship: many_to_one
   }
-
   join: campaign {
     view_label: "Campaigns"
-    sql_on: ${ad_group.campaign_id} = ${campaign.campaign_id}  AND
+    sql_on: ${ad_group_stats.campaign_id} = ${campaign.campaign_id}  AND
       ${ad_group_stats._data_raw} = ${campaign._data_raw} ;;
+    relationship: many_to_one
+  }
+  join: customer {
+    view_label: "Customer"
+    sql_on: ${ad_group_stats.external_customer_id} = ${customer.external_customer_id} AND
+      ${ad_group_stats._data_raw} = ${customer._data_raw} ;;
     relationship: many_to_one
   }
 }
 
-explore:ad_group_basic_stats {
+explore: ad_group_basic_stats {
+  hidden: yes
   label: "Ad Group Stats"
   view_label: "Ad Group Stats"
 
@@ -215,16 +291,22 @@ explore:ad_group_basic_stats {
       ${ad_group_basic_stats._data_raw} = ${ad_group._data_raw} ;;
     relationship: many_to_one
   }
-
   join: campaign {
     view_label: "Campaigns"
-    sql_on: ${ad_group.campaign_id} = ${campaign.campaign_id}  AND
-      ${ad_group._data_raw} = ${campaign._data_raw} ;;
+    sql_on: ${ad_group_basic_stats.campaign_id} = ${campaign.campaign_id}  AND
+      ${ad_group_basic_stats._data_raw} = ${campaign._data_raw} ;;
+    relationship: many_to_one
+  }
+  join: customer {
+    view_label: "Customer"
+    sql_on: ${ad_group_basic_stats.external_customer_id} = ${customer.external_customer_id} AND
+      ${ad_group_basic_stats._data_raw} = ${customer._data_raw} ;;
     relationship: many_to_one
   }
 }
 
 explore: keyword_stats {
+  hidden: yes
   label: "Keyword Stats"
   view_label: "Keyword Stats"
 
@@ -236,19 +318,26 @@ explore: keyword_stats {
   }
   join: ad_group {
     view_label: "Ad Groups"
-    sql_on: ${keyword.ad_group_id} = ${ad_group.ad_group_id} AND
-      ${keyword._data_raw} = ${ad_group._data_raw} ;;
+    sql_on: ${keyword_stats.ad_group_id} = ${ad_group.ad_group_id} AND
+      ${keyword_stats._data_raw} = ${ad_group._data_raw} ;;
     relationship: many_to_one
   }
   join: campaign {
     view_label: "Campaigns"
-    sql_on: ${keyword.campaign_id} = ${campaign.campaign_id} AND
-      ${keyword._data_raw} = ${campaign._data_raw} ;;
+    sql_on: ${keyword_stats.campaign_id} = ${campaign.campaign_id} AND
+      ${keyword_stats._data_raw} = ${campaign._data_raw} ;;
+    relationship: many_to_one
+  }
+  join: customer {
+    view_label: "Customer"
+    sql_on: ${keyword_stats.external_customer_id} = ${customer.external_customer_id} AND
+      ${keyword_stats._data_raw} = ${customer._data_raw} ;;
     relationship: many_to_one
   }
 }
 
 explore: keyword_basic_stats {
+  hidden: yes
   label: "Keyword Stats"
   view_label: "Keyword Stats"
 
@@ -260,19 +349,26 @@ explore: keyword_basic_stats {
   }
   join: ad_group {
     view_label: "Ad Groups"
-    sql_on: ${keyword.ad_group_id} = ${ad_group.ad_group_id} AND
-      ${keyword._data_raw} = ${ad_group._data_raw} ;;
+    sql_on: ${keyword_basic_stats.ad_group_id} = ${ad_group.ad_group_id} AND
+      ${keyword_basic_stats._data_raw} = ${ad_group._data_raw} ;;
     relationship: many_to_one
   }
   join: campaign {
     view_label: "Campaigns"
-    sql_on: ${keyword.campaign_id} = ${campaign.campaign_id} AND
-      ${keyword._data_raw} = ${campaign._data_raw} ;;
+    sql_on: ${keyword_basic_stats.campaign_id} = ${campaign.campaign_id} AND
+      ${keyword_basic_stats._data_raw} = ${campaign._data_raw} ;;
+    relationship: many_to_one
+  }
+  join: customer {
+    view_label: "Customer"
+    sql_on: ${keyword_basic_stats.external_customer_id} = ${customer.external_customer_id} AND
+      ${keyword_basic_stats._data_raw} = ${customer._data_raw} ;;
     relationship: many_to_one
   }
 }
 
 explore: geo_stats {
+  hidden: yes
   label: "Geo Stats"
   view_label: "Geo Stats"
 
@@ -323,16 +419,22 @@ explore: geo_stats {
       ${geo_stats._data_raw} = ${ad_group._data_raw} ;;
     relationship: many_to_one
   }
-
   join: campaign {
     view_label: "Campaigns"
     sql_on: ${geo_stats.campaign_id} = ${campaign.campaign_id} AND
       ${geo_stats._data_raw} = ${campaign._data_raw} ;;
     relationship: many_to_one
   }
+  join: customer {
+    view_label: "Customer"
+    sql_on: ${geo_stats.external_customer_id} = ${customer.external_customer_id} AND
+      ${geo_stats._data_raw} = ${customer._data_raw} ;;
+    relationship: many_to_one
+  }
 }
 
 explore: audience_stats {
+  hidden: yes
   label: "Audience Stats"
   view_label: "Audience Stats"
 
@@ -354,9 +456,16 @@ explore: audience_stats {
       ${audience_stats._data_raw} = ${campaign._data_raw} ;;
     relationship: many_to_one
   }
+  join: customer {
+    view_label: "Customer"
+    sql_on: ${audience_stats.external_customer_id} = ${customer.external_customer_id} AND
+      ${audience_stats._data_raw} = ${customer._data_raw} ;;
+    relationship: many_to_one
+  }
 }
 
 explore: audience_basic_stats {
+  hidden: yes
   label: "Audience Stats"
   view_label: "Audience Stats"
 
@@ -378,9 +487,16 @@ explore: audience_basic_stats {
       ${audience_basic_stats._data_raw} = ${campaign._data_raw} ;;
     relationship: many_to_one
   }
+  join: customer {
+    view_label: "Customer"
+    sql_on: ${audience_basic_stats.external_customer_id} = ${customer.external_customer_id} AND
+      ${audience_basic_stats._data_raw} = ${customer._data_raw} ;;
+    relationship: many_to_one
+  }
 }
 
 explore: campaign_stats {
+  hidden: yes
   label: "Campaign Stats"
   view_label: "Campaign Stats"
 
@@ -390,9 +506,16 @@ explore: campaign_stats {
       ${campaign_stats._data_raw} = ${campaign._data_raw} ;;
     relationship: many_to_one
   }
+  join: customer {
+    view_label: "Customer"
+    sql_on: ${campaign_stats.external_customer_id} = ${customer.external_customer_id} AND
+      ${campaign_stats._data_raw} = ${customer._data_raw} ;;
+    relationship: many_to_one
+  }
 }
 
 explore: campaign_basic_stats {
+  hidden: yes
   label: "Campaign Stats"
   view_label: "Campaign Stats"
 
@@ -402,9 +525,16 @@ explore: campaign_basic_stats {
       ${campaign_basic_stats._data_raw} = ${campaign._data_raw} ;;
     relationship: many_to_one
   }
+  join: customer {
+    view_label: "Customer"
+    sql_on: ${campaign_basic_stats.external_customer_id} = ${customer.external_customer_id} AND
+      ${campaign_basic_stats._data_raw} = ${customer._data_raw} ;;
+    relationship: many_to_one
+  }
 }
 
 explore: account_quarter_stats {
+  hidden: yes
   label: "Account Quarter Stats"
   view_label: "Account Quarter Stats"
 
@@ -424,6 +554,7 @@ explore: account_quarter_stats {
 }
 
 explore: campaign_quarter_stats {
+  hidden: yes
   label: "Campaign Quarter Stats"
   view_label: "Campaign Quarter Stats"
 
@@ -436,13 +567,14 @@ explore: campaign_quarter_stats {
   }
   join: campaign {
     view_label: "Campaign"
-    sql_on: ${campaign_quarter_stats.campaign_id} = ${campaign.campaign_id} AND
-      ${campaign.latest} = 'Yes' ;;
+    sql_on: ${campaign_quarter_stats.campaign_id} = ${campaign.campaign_id}  AND
+      ${campaign_quarter_stats._data_quarter} = ${campaign._data_raw} ;;
     relationship: many_to_one
   }
 }
 
 explore: hourly_campaign_stats {
+  hidden: yes
   label: "Hourly Campaign Stats"
   view_label: "Hourly Campaign Stats"
 
@@ -452,9 +584,16 @@ explore: hourly_campaign_stats {
       ${hourly_campaign_stats._data_raw} = ${campaign._data_raw} ;;
     relationship: many_to_one
   }
+  join: customer {
+    view_label: "Customer"
+    sql_on: ${hourly_campaign_stats.external_customer_id} = ${customer.external_customer_id} AND
+      ${hourly_campaign_stats._data_raw} = ${customer._data_raw} ;;
+    relationship: many_to_one
+  }
 }
 
 explore: campaign_budget_stats {
+  hidden: yes
   label: "Campaign Budget Stats"
   view_label: "Campaign Budget Stats"
 
@@ -464,9 +603,16 @@ explore: campaign_budget_stats {
       ${campaign_budget_stats._data_raw} = ${campaign._data_raw} ;;
     relationship: many_to_one
   }
+  join: customer {
+    view_label: "Customer"
+    sql_on: ${campaign_budget_stats.external_customer_id} = ${customer.external_customer_id} AND
+      ${campaign_budget_stats._data_raw} = ${customer._data_raw} ;;
+    relationship: many_to_one
+  }
 }
 
 explore: account_basic_stats {
+  hidden: yes
   label: "Account Stats"
   view_label: "Account Stats"
 
@@ -479,6 +625,7 @@ explore: account_basic_stats {
 }
 
 explore: account_stats {
+  hidden: yes
   label: "Account Stats"
   view_label: "Account Stats"
 
@@ -491,6 +638,7 @@ explore: account_stats {
 }
 
 explore: hourly_account_stats {
+  hidden: yes
   join:  customer {
     view_label: "Customer"
     sql_on: ${hourly_account_stats.external_customer_id} = ${customer.external_customer_id} AND
