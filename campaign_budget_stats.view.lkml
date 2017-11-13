@@ -26,7 +26,7 @@ FROM adwords_v201609.CampaignStats_6747157124  AS campaign_stats
 LEFT JOIN adwords_v201609.Campaign_6747157124  AS campaign ON campaign_stats.CampaignId = campaign.CampaignId AND
       campaign_stats._DATA_DATE = campaign._DATA_DATE
 
-GROUP BY 1,2,3
+GROUP BY 1,2,3,4
       ;;
   }
 

@@ -568,7 +568,7 @@ explore: campaign_quarter_stats {
   join: campaign {
     view_label: "Campaign"
     sql_on: ${campaign_quarter_stats.campaign_id} = ${campaign.campaign_id}  AND
-      ${campaign_quarter_stats._data_quarter} = ${campaign._data_raw} ;;
+      ${campaign_quarter_stats._data_raw} = ${campaign._data_raw} ;;
     relationship: many_to_one
   }
 }

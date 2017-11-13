@@ -2,8 +2,8 @@
   title: Account Performance
   layout: newspaper
   elements:
-  - name: cost_by_ad_network_over_time_account
-    title: Cost by ad network over time
+  - title: Cost by ad network over time
+    name: Cost by ad network over time
     model: adwords_demo
     explore: account_basic_stats
     type: looker_area
@@ -61,8 +61,8 @@
     col: 0
     width: 12
     height: 8
-  - name: cost_by_device_over_time_account
-    title: Cost by device over time
+  - title: Cost by device over time
+    name: Cost by device over time
     model: adwords_demo
     explore: account_basic_stats
     type: looker_area
@@ -123,8 +123,8 @@
     col: 0
     width: 12
     height: 7
-  - name: average_cost_per_conversion_over_time_account
-    title: Average cost per conversion over time
+  - title: Average cost per conversion over time
+    name: Average cost per conversion over time
     model: adwords_demo
     explore: account_basic_stats
     type: looker_line
@@ -194,17 +194,17 @@
       - id: account_basic_stats.total_impressions
         name: Campaign Stats Total Impressions
         __FILE: adwords_demo/account_performance.dashboard.lookml
-        __LINE_NUM: 190
+        __LINE_NUM: 194
       - id: account_basic_stats.total_interactions
         name: Campaign Stats Total Interactions
         __FILE: adwords_demo/account_performance.dashboard.lookml
-        __LINE_NUM: 194
+        __LINE_NUM: 198
       - id: account_basic_stats.total_conversions
         name: Campaign Stats Total Conversions
         __FILE: adwords_demo/account_performance.dashboard.lookml
-        __LINE_NUM: 198
+        __LINE_NUM: 202
       __FILE: adwords_demo/account_performance.dashboard.lookml
-      __LINE_NUM: 178
+      __LINE_NUM: 182
     discontinuous_nulls: false
     focus_on_hover: false
     reference_lines: []
@@ -217,15 +217,15 @@
       show_label: false
       label_type: string
       __FILE: adwords_demo/account_performance.dashboard.lookml
-      __LINE_NUM: 208
+      __LINE_NUM: 212
     listen:
       Date: account_basic_stats._data_date
     row: 12
     col: 0
     width: 24
     height: 7
-  - name: funnel_by_ad_network_account
-    title: Funnel by ad network
+  - title: Funnel by ad network
+    name: Funnel by ad network
     model: adwords_demo
     explore: account_basic_stats
     type: looker_column
@@ -294,25 +294,25 @@
       - id: account_basic_stats.total_impressions
         name: Campaign Stats Total Impressions
         __FILE: adwords_demo/account_performance.dashboard.lookml
-        __LINE_NUM: 289
+        __LINE_NUM: 294
       - id: account_basic_stats.total_interactions
         name: Campaign Stats Total Interactions
         __FILE: adwords_demo/account_performance.dashboard.lookml
-        __LINE_NUM: 293
+        __LINE_NUM: 298
       - id: account_basic_stats.total_conversions
         name: Campaign Stats Total Conversions
         __FILE: adwords_demo/account_performance.dashboard.lookml
-        __LINE_NUM: 297
+        __LINE_NUM: 302
       __FILE: adwords_demo/account_performance.dashboard.lookml
-      __LINE_NUM: 277
+      __LINE_NUM: 282
     listen:
       Date: account_basic_stats._data_date
     row: 19
     col: 12
     width: 12
     height: 8
-  - name: funnel_by_device_account
-    title: Funnel by device
+  - title: Funnel by device
+    name: Funnel by device
     model: adwords_demo
     explore: account_basic_stats
     type: looker_column
@@ -381,25 +381,25 @@
       - id: account_basic_stats.total_impressions
         name: Campaign Stats Total Impressions
         __FILE: adwords_demo/account_performance.dashboard.lookml
-        __LINE_NUM: 375
+        __LINE_NUM: 381
       - id: account_basic_stats.total_interactions
         name: Campaign Stats Total Interactions
         __FILE: adwords_demo/account_performance.dashboard.lookml
-        __LINE_NUM: 379
+        __LINE_NUM: 385
       - id: account_basic_stats.total_conversions
         name: Campaign Stats Total Conversions
         __FILE: adwords_demo/account_performance.dashboard.lookml
-        __LINE_NUM: 383
+        __LINE_NUM: 389
       __FILE: adwords_demo/account_performance.dashboard.lookml
-      __LINE_NUM: 363
+      __LINE_NUM: 369
     listen:
       Date: account_basic_stats._data_date
     row: 27
     col: 12
     width: 12
     height: 7
-  - name: campaign_details
-    title: Campaign details
+  - title: Campaign details
+    name: Campaign details
     model: adwords_demo
     explore: campaign_basic_stats
     type: table
@@ -457,8 +457,8 @@
     col: 0
     width: 24
     height: 6
-  - name: ad_spend_qtd_account
-    title: Ad spend qtd
+  - title: Ad spend qtd
+    name: Ad spend qtd
     model: adwords_demo
     explore: account_quarter_stats
     type: single_value
@@ -468,7 +468,6 @@
     - last_account_quarter_stats.total_cost_usd
     fill_fields:
     - account_quarter_stats._data_quarter
-    hidden_fields: [last_account_quarter_stats.total_cost_usd]
     sorts:
     - account_quarter_stats._data_quarter desc
     limit: 500
@@ -479,6 +478,8 @@
       expression: "${account_quarter_stats.total_cost_usd} - ${last_account_quarter_stats.total_cost_usd}\n"
       value_format:
       value_format_name: usd_0
+    hidden_fields:
+    - last_account_quarter_stats.total_cost_usd
     label: Ad Spend QTD
     query_timezone: America/Los_Angeles
     custom_color_enabled: false
@@ -517,8 +518,8 @@
     col: 0
     width: 12
     height: 4
-  - name: cost_per_conversion_qtd_account
-    title: Cost per conversion qtd
+  - title: Cost per conversion qtd
+    name: Cost per conversion qtd
     model: adwords_demo
     explore: account_quarter_stats
     type: single_value
@@ -528,7 +529,6 @@
     - last_account_quarter_stats.average_cost_per_conversion
     fill_fields:
     - account_quarter_stats._data_quarter
-    hidden_fields: [last_account_quarter_stats.average_cost_per_conversion]
     sorts:
     - account_quarter_stats._data_quarter desc
     limit: 500
@@ -539,6 +539,8 @@
       expression: "(${account_quarter_stats.average_cost_per_conversion} -  ${last_account_quarter_stats.average_cost_per_conversion})/${last_account_quarter_stats.average_cost_per_conversion}\n"
       value_format:
       value_format_name: percent_0
+    hidden_fields:
+    - last_account_quarter_stats.average_cost_per_conversion
     label: Cost per Conversion QTD
     query_timezone: America/Los_Angeles
     custom_color_enabled: false
@@ -577,8 +579,8 @@
     col: 0
     width: 6
     height: 4
-  - name: conversion_rate_qtd_account
-    title: Conversion rate qtd
+  - title: Conversion rate qtd
+    name: Conversion rate qtd
     model: adwords_demo
     explore: account_quarter_stats
     type: single_value
@@ -588,7 +590,6 @@
     - last_account_quarter_stats.average_conversion_rate
     fill_fields:
     - account_quarter_stats._data_quarter
-    hidden_fields: [last_account_quarter_stats.average_conversion_rate]
     sorts:
     - account_quarter_stats._data_quarter desc
     limit: 500
@@ -599,6 +600,8 @@
       expression: "(${account_quarter_stats.average_conversion_rate} - ${last_account_quarter_stats.average_conversion_rate})/${last_account_quarter_stats.average_conversion_rate}\n"
       value_format:
       value_format_name: percent_0
+    hidden_fields:
+    - last_account_quarter_stats.average_conversion_rate
     label: Conversion Rate QTD
     query_timezone: America/Los_Angeles
     custom_color_enabled: false
@@ -637,68 +640,8 @@
     col: 6
     width: 6
     height: 4
-  - name: conversions_qtd_account
-    title: Conversions qtd
-    model: adwords_demo
-    explore: account_quarter_stats
-    type: single_value
-    fields:
-    - account_quarter_stats._data_quarter
-    - account_quarter_stats.total_conversions
-    - last_account_quarter_stats.total_conversions
-    fill_fields:
-    - account_quarter_stats._data_quarter
-    hidden_fields: [last_account_quarter_stats.total_conversions]
-    sorts:
-    - account_quarter_stats._data_quarter desc
-    limit: 500
-    column_limit: 50
-    dynamic_fields:
-    - table_calculation: quarterly_change
-      label: Quarterly Change
-      expression: "${account_quarter_stats.total_conversions} - ${last_account_quarter_stats.total_conversions}\n"
-      value_format:
-      value_format_name:
-    label: Conversions QTD
-    query_timezone: America/Los_Angeles
-    custom_color_enabled: false
-    custom_color: forestgreen
-    show_single_value_title: true
-    show_comparison: true
-    comparison_type: change
-    comparison_reverse_colors: false
-    show_comparison_label: true
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    series_types: {}
-    single_value_title: Conversions QTD
-    comparison_label: ''
-    row: 2
-    col: 12
-    width: 12
-    height: 4
-  - name: interaction_rate_qtd_account
-    title: Interaction rate qtd
+  - title: Interaction rate qtd
+    name: Interaction rate qtd
     model: adwords_demo
     explore: account_quarter_stats
     type: single_value
@@ -708,7 +651,6 @@
     - last_account_quarter_stats.average_interaction_rate
     fill_fields:
     - account_quarter_stats._data_quarter
-    hidden_fields: [last_account_quarter_stats.average_interaction_rate]
     sorts:
     - account_quarter_stats._data_quarter desc
     limit: 500
@@ -716,9 +658,12 @@
     dynamic_fields:
     - table_calculation: quarterly_change
       label: Quarterly % Change
-      expression: "(${account_quarter_stats.average_interaction_rate} - ${last_account_quarter_stats.average_interaction_rate} )/${last_account_quarter_stats.average_interaction_rate}\n"
+      expression: "(${account_quarter_stats.average_interaction_rate} - ${last_account_quarter_stats.average_interaction_rate}\
+        \ )/${last_account_quarter_stats.average_interaction_rate}\n"
       value_format:
       value_format_name: percent_0
+    hidden_fields:
+    - last_account_quarter_stats.average_interaction_rate
     label: Interaction Rate QTD
     query_timezone: America/Los_Angeles
     custom_color_enabled: false
@@ -757,8 +702,8 @@
     col: 18
     width: 6
     height: 4
-  - name: cost_per_interaction_qtd_account
-    title: Cost per interaction qtd
+  - title: Cost per interaction qtd
+    name: Cost per interaction qtd
     model: adwords_demo
     explore: account_quarter_stats
     type: single_value
@@ -768,7 +713,6 @@
     - last_account_quarter_stats.average_cost_per_interaction
     fill_fields:
     - account_quarter_stats._data_quarter
-    hidden_fields: [last_account_quarter_stats.average_cost_per_interaction]
     sorts:
     - account_quarter_stats._data_quarter desc
     limit: 500
@@ -779,6 +723,8 @@
       expression: "(${account_quarter_stats.average_cost_per_interaction} - ${last_account_quarter_stats.average_cost_per_interaction})/${last_account_quarter_stats.average_cost_per_interaction}\n"
       value_format:
       value_format_name: percent_0
+    hidden_fields:
+    - last_account_quarter_stats.average_cost_per_interaction
     label: Cost per Interaction QTD
     query_timezone: America/Los_Angeles
     custom_color_enabled: false
@@ -842,8 +788,8 @@
     col: 0
     width: 24
     height: 2
-  - name: hourly_average_cost_per_conversion_account
-    title: Hourly Average Cost per Conversion
+  - title: Hourly Average Cost per Conversion
+    name: Hourly Average Cost per Conversion
     model: adwords_demo
     explore: hourly_account_stats
     type: looker_column
@@ -911,6 +857,10 @@
       series:
       - id: hourly_account_stats.total_conversions
         name: Total Conversions
+        __FILE: adwords_demo/account_performance.dashboard.lookml
+        __LINE_NUM: 912
+      __FILE: adwords_demo/account_performance.dashboard.lookml
+      __LINE_NUM: 900
     - label:
       maxValue:
       minValue:
@@ -925,6 +875,10 @@
       series:
       - id: hourly_account_stats.average_cost_per_conversion
         name: Cost per Conversion
+        __FILE: adwords_demo/account_performance.dashboard.lookml
+        __LINE_NUM: 926
+      __FILE: adwords_demo/account_performance.dashboard.lookml
+      __LINE_NUM: 914
     hidden_series:
     - hourly_account_stats.total_cost_usd
     listen:
@@ -933,8 +887,8 @@
     col: 12
     width: 12
     height: 7
-  - name: day_of_week_average_cost_per_conversion_account
-    title: Day of Week Average Cost per Conversion
+  - title: Day of Week Average Cost per Conversion
+    name: Day of Week Average Cost per Conversion
     model: adwords_demo
     explore: account_basic_stats
     type: looker_column
@@ -989,6 +943,10 @@
       series:
       - id: account_basic_stats.total_conversions
         name: Campaign Stats Total Conversions
+        __FILE: adwords_demo/account_performance.dashboard.lookml
+        __LINE_NUM: 990
+      __FILE: adwords_demo/account_performance.dashboard.lookml
+      __LINE_NUM: 978
     - label:
       maxValue:
       minValue:
@@ -1003,6 +961,10 @@
       series:
       - id: account_basic_stats.total_cost_usd
         name: Campaign Stats Total Cost USD
+        __FILE: adwords_demo/account_performance.dashboard.lookml
+        __LINE_NUM: 1004
+      __FILE: adwords_demo/account_performance.dashboard.lookml
+      __LINE_NUM: 992
     - label:
       maxValue:
       minValue:
@@ -1017,6 +979,10 @@
       series:
       - id: account_basic_stats.average_cost_per_conversion
         name: Campaign Stats Cost per Conversion
+        __FILE: adwords_demo/account_performance.dashboard.lookml
+        __LINE_NUM: 1018
+      __FILE: adwords_demo/account_performance.dashboard.lookml
+      __LINE_NUM: 1006
     series_types:
       account_basic_stats.average_cost_per_conversion: line
     hidden_series:
@@ -1027,6 +993,69 @@
     col: 0
     width: 12
     height: 7
+  - title: Conversions qtd
+    name: Conversions qtd
+    model: adwords_demo
+    explore: account_quarter_stats
+    type: single_value
+    fields:
+    - account_quarter_stats._data_quarter
+    - account_quarter_stats.total_conversions
+    - last_account_quarter_stats.total_conversions
+    fill_fields:
+    - account_quarter_stats._data_quarter
+    sorts:
+    - account_quarter_stats._data_quarter desc
+    limit: 500
+    column_limit: 50
+    dynamic_fields:
+    - table_calculation: quarterly_change
+      label: Quarterly Change
+      expression: "${account_quarter_stats.total_conversions} - ${last_account_quarter_stats.total_conversions}\n"
+      value_format:
+      value_format_name: decimal_0
+      _kind_hint: measure
+      _type_hint: number
+    hidden_fields:
+    - last_account_quarter_stats.total_conversions
+    label: Conversions QTD
+    query_timezone: America/Los_Angeles
+    custom_color_enabled: false
+    custom_color: forestgreen
+    show_single_value_title: true
+    show_comparison: true
+    comparison_type: change
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    series_types: {}
+    single_value_title: Conversions QTD
+    comparison_label: ''
+    row: 2
+    col: 12
+    width: 12
+    height: 4
   filters:
   - name: Date
     title: Date
@@ -1037,3 +1066,4 @@
     field: account_basic_stats._data_date
     listens_to_filters: []
     allow_multiple_values: true
+    required: false

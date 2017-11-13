@@ -33,7 +33,7 @@ view: campaign_quarter_stats {
               SELECT MAX(FORMAT_TIMESTAMP('%Y-%m', TIMESTAMP_TRUNC(CAST(TIMESTAMP(campaign_stats._DATA_DATE)  AS TIMESTAMP), QUARTER))) AS quarter
               FROM adwords_v201609.CampaignBasicStats_6747157124  AS campaign_stats))
 
-      GROUP BY 1,2
+      GROUP BY 1,2,3
         ;;
 
 #       explore_source: stats {
@@ -46,10 +46,11 @@ view: campaign_quarter_stats {
 #         column: interactions { field: stats.interactions }
 #       }
     }
-  dimension: _data_quarter {
-    type: date_quarter
+  dimension_group: _data {
+    type: time
+    timeframes: ["quarter", "raw"]
     convert_tz: no
-    sql: CONCAT(${TABLE}.quarter, '-01') ;;
+    sql: CAST(CONCAT(${TABLE}.quarter, '-01') AS TIMESTAMP) ;;
   }
   dimension: external_customer_id {
     drill_fields: [campaign.detail*]

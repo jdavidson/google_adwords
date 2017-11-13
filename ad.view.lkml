@@ -205,14 +205,13 @@ view: ad {
 
   dimension: creative {
     type: string
-    sql: CONCAT(
-      COALESCE(CONCAT(${headline}, "\n"),"")
-      , COALESCE(CONCAT(${headline_part1}, "\n"),"")
-      , COALESCE(CONCAT(${headline_part2}, "\n"),"")
-      , COALESCE(CONCAT(${description}, "\n"),"")
-      , COALESCE(CONCAT(${description1}, "\n"),"")
-      , COALESCE(CONCAT(${description2}, "\n"),"")
-      ) ;;
+    sql: CASE
+      WHEN ${headline_part1} = "Compare Top 20 BI Tools" THEN "Compare Gadgets"
+      WHEN ${headline_part1} = "Looker - Watch Product Demo" THEN "Compare Widget Vendors"
+      WHEN ${headline_part1} = "Business Intelligence" THEN "Best Gizmo based on Customer Feedback"
+      WHEN ${headline} = "Ad name: 300x250; 300 x 250" THEN "Gadget and Widgets and Gizmos. Oh my!"
+      WHEN ${headline} = "Creative Market without stats" THEN "Best tool in the market"
+      ELSE "Best Gizmos" END;;
   }
 
   dimension: display_headline {
