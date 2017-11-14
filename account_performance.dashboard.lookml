@@ -858,9 +858,9 @@
       - id: hourly_account_stats.total_conversions
         name: Total Conversions
         __FILE: adwords_demo/account_performance.dashboard.lookml
-        __LINE_NUM: 912
+        __LINE_NUM: 858
       __FILE: adwords_demo/account_performance.dashboard.lookml
-      __LINE_NUM: 900
+      __LINE_NUM: 846
     - label:
       maxValue:
       minValue:
@@ -876,9 +876,9 @@
       - id: hourly_account_stats.average_cost_per_conversion
         name: Cost per Conversion
         __FILE: adwords_demo/account_performance.dashboard.lookml
-        __LINE_NUM: 926
+        __LINE_NUM: 876
       __FILE: adwords_demo/account_performance.dashboard.lookml
-      __LINE_NUM: 914
+      __LINE_NUM: 864
     hidden_series:
     - hourly_account_stats.total_cost_usd
     listen:
@@ -944,9 +944,9 @@
       - id: account_basic_stats.total_conversions
         name: Campaign Stats Total Conversions
         __FILE: adwords_demo/account_performance.dashboard.lookml
-        __LINE_NUM: 990
+        __LINE_NUM: 944
       __FILE: adwords_demo/account_performance.dashboard.lookml
-      __LINE_NUM: 978
+      __LINE_NUM: 932
     - label:
       maxValue:
       minValue:
@@ -962,9 +962,9 @@
       - id: account_basic_stats.total_cost_usd
         name: Campaign Stats Total Cost USD
         __FILE: adwords_demo/account_performance.dashboard.lookml
-        __LINE_NUM: 1004
+        __LINE_NUM: 962
       __FILE: adwords_demo/account_performance.dashboard.lookml
-      __LINE_NUM: 992
+      __LINE_NUM: 950
     - label:
       maxValue:
       minValue:
@@ -980,9 +980,9 @@
       - id: account_basic_stats.average_cost_per_conversion
         name: Campaign Stats Cost per Conversion
         __FILE: adwords_demo/account_performance.dashboard.lookml
-        __LINE_NUM: 1018
+        __LINE_NUM: 980
       __FILE: adwords_demo/account_performance.dashboard.lookml
-      __LINE_NUM: 1006
+      __LINE_NUM: 968
     series_types:
       account_basic_stats.average_cost_per_conversion: line
     hidden_series:
@@ -1060,7 +1060,7 @@
   - name: Date
     title: Date
     type: field_filter
-    default_value: 6 months
+    default_value: 2 quarters
     model: adwords_demo
     explore: account_basic_stats
     field: account_basic_stats._data_date

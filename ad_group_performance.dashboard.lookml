@@ -713,7 +713,7 @@
   - name: Date
     title: Date
     type: field_filter
-    default_value: 6 months
+    default_value: 2 quarters
     model: adwords_demo
     explore: ad_group_basic_stats
     field: ad_group_basic_stats._data_date
