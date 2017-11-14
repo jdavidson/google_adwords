@@ -81,7 +81,7 @@ view: campaign {
       ELSE "NA - Display - Gadget" END ;;
     link: {
       label: "Campaign Dashboard"
-      url: "/dashboards/adwords_demo::campaign_performance?Campaign%Name={{ value | encode_uri }}"
+      url: "/dashboards/adwords_demo::campaign_performance?Campaign%20Name={{ value | encode_uri }}"
       icon_url: "http://www.looker.com/favicon.ico"
     }
   }
