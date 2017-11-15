@@ -122,6 +122,7 @@ explore: ad {
 
 ## Stats tables are used as left-most tables. See "README" for explanation of join logic.
 explore: master_stats {
+  persist_for: "24 hours"
   label: "Ad Stats"
   view_label: "Ad Stats"
 
@@ -159,6 +160,7 @@ explore: master_stats {
 
 explore: ad_stats {
   hidden: yes
+  persist_for: "24 hours"
   label: "Ad Stats"
   view_label: "Ad Stats"
 
@@ -196,6 +198,7 @@ explore: ad_stats {
 
 explore: ad_basic_stats {
   hidden: yes
+  persist_for: "24 hours"
   label: "Ad Stats"
   view_label: "Ad Stats"
 
@@ -233,6 +236,7 @@ explore: ad_basic_stats {
 
 explore: hourly_ad_group_stats {
   label: "Hourly Ad Group Stats"
+  persist_for: "24 hours"
   view_label: "Hourly Ad Group Stats"
 
   join: ad_group {
@@ -257,6 +261,7 @@ explore: hourly_ad_group_stats {
 
 explore: ad_group_stats {
   hidden: yes
+  persist_for: "24 hours"
   label: "Ad Group Stats"
   view_label: "Ad Group Stats"
 
@@ -282,6 +287,7 @@ explore: ad_group_stats {
 
 explore: ad_group_basic_stats {
   hidden: yes
+  persist_for: "24 hours"
   label: "Ad Group Stats"
   view_label: "Ad Group Stats"
 
@@ -307,6 +313,7 @@ explore: ad_group_basic_stats {
 
 explore: keyword_stats {
   hidden: yes
+  persist_for: "24 hours"
   label: "Keyword Stats"
   view_label: "Keyword Stats"
 
@@ -338,6 +345,7 @@ explore: keyword_stats {
 
 explore: keyword_basic_stats {
   hidden: yes
+  persist_for: "24 hours"
   label: "Keyword Stats"
   view_label: "Keyword Stats"
 
@@ -435,6 +443,7 @@ explore: geo_stats {
 
 explore: audience_stats {
   hidden: yes
+  persist_for: "24 hours"
   label: "Audience Stats"
   view_label: "Audience Stats"
 
@@ -497,6 +506,7 @@ explore: audience_basic_stats {
 
 explore: campaign_stats {
   hidden: yes
+  persist_for: "24 hours"
   label: "Campaign Stats"
   view_label: "Campaign Stats"
 
@@ -516,6 +526,7 @@ explore: campaign_stats {
 
 explore: campaign_basic_stats {
   hidden: yes
+  persist_for: "24 hours"
   label: "Campaign Stats"
   view_label: "Campaign Stats"
 
@@ -535,6 +546,7 @@ explore: campaign_basic_stats {
 
 explore: account_quarter_stats {
   hidden: yes
+  persist_for: "24 hours"
   label: "Account Quarter Stats"
   view_label: "Account Quarter Stats"
 
@@ -555,6 +567,7 @@ explore: account_quarter_stats {
 
 explore: campaign_quarter_stats {
   hidden: yes
+  persist_for: "24 hours"
   label: "Campaign Quarter Stats"
   view_label: "Campaign Quarter Stats"
 
@@ -575,6 +588,7 @@ explore: campaign_quarter_stats {
 
 explore: hourly_campaign_stats {
   hidden: yes
+  persist_for: "24 hours"
   label: "Hourly Campaign Stats"
   view_label: "Hourly Campaign Stats"
 
@@ -594,6 +608,7 @@ explore: hourly_campaign_stats {
 
 explore: campaign_budget_stats {
   hidden: yes
+  persist_for: "24 hours"
   label: "Campaign Budget Stats"
   view_label: "Campaign Budget Stats"
 
@@ -613,6 +628,7 @@ explore: campaign_budget_stats {
 
 explore: account_basic_stats {
   hidden: yes
+  persist_for: "24 hours"
   label: "Account Stats"
   view_label: "Account Stats"
 
@@ -625,6 +641,7 @@ explore: account_basic_stats {
 }
 
 explore: account_stats {
+  persist_for: "24 hours"
   hidden: yes
   label: "Account Stats"
   view_label: "Account Stats"
@@ -638,6 +655,7 @@ explore: account_stats {
 }
 
 explore: hourly_account_stats {
+  persist_for: "24 hours"
   hidden: yes
   join:  customer {
     view_label: "Customer"
