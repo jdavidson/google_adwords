@@ -212,6 +212,11 @@ view: ad {
       WHEN ${headline} = "Ad name: 300x250; 300 x 250" THEN "Gadget and Widgets and Gizmos. Oh my!"
       WHEN ${headline} = "Creative Market without stats" THEN "Best tool in the market"
       ELSE "Best Gizmos" END;;
+    link: {
+      url: "https://adwords.google.com"
+      icon_url: "https://www.gstatic.com/awn/awsm/brt/awn_awsm_20171108_RC00/aw_blend/favicon.ico"
+      label: "Change Bid"
+    }
   }
 
   dimension: display_headline {

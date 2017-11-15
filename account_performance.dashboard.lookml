@@ -220,7 +220,7 @@
       __LINE_NUM: 212
     listen:
       Date: account_basic_stats._data_date
-    row: 12
+    row: 10
     col: 0
     width: 24
     height: 7
@@ -516,7 +516,7 @@
     comparison_label: ''
     row: 2
     col: 0
-    width: 12
+    width: 8
     height: 4
   - title: Cost per conversion qtd
     name: Cost per conversion qtd
@@ -776,7 +776,7 @@
     title_text: Progress
     subtitle_text: Current Performance Trends
     body_text: ''
-    row: 10
+    row: 17
     col: 0
     width: 24
     height: 2
@@ -1053,8 +1053,50 @@
     single_value_title: Conversions QTD
     comparison_label: ''
     row: 2
-    col: 12
-    width: 12
+    col: 15
+    width: 9
+    height: 4
+  - title: Active Campaigns
+    name: Active Campaigns
+    model: adwords_demo
+    explore: campaign_basic_stats
+    type: single_value
+    fields:
+    - campaign.count
+    limit: 500
+    custom_color_enabled: false
+    custom_color: forestgreen
+    show_single_value_title: true
+    show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: true
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    series_types: {}
+    row: 2
+    col: 8
+    width: 7
     height: 4
   filters:
   - name: Date
