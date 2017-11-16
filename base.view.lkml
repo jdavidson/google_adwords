@@ -16,6 +16,17 @@ view: base {
        ;;
   }
 
+  dimension: current_day_of_quarter {
+    hidden: yes
+    type:  number
+    sql: DATE_DIFF(CURRENT_DATE(), DATE_TRUNC(CURRENT_DATE(), QUARTER), DAY) ;;
+  }
+
+  dimension: less_than_current_day_of_quarter {
+    type: yesno
+    sql: ${_data_day_of_quarter} < ${current_day_of_quarter} ;;
+  }
+
   dimension: _data_next_quarter {
     hidden: yes
     type: date

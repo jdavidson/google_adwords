@@ -12,7 +12,7 @@ view: stats {
   measure: total_cost {
     hidden: yes
     type: sum
-    sql: (${cost} * ((RAND() * 9) + 1) ;;
+    sql: ${cost} * ((RAND() * 9) + 1) ;;
   }
 
   measure: total_cost_usd {

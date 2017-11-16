@@ -191,6 +191,11 @@ view: campaign {
     sql: (${amount}  / 1000000) ;;
   }
 
+  measure: total_amount {
+    type: sum
+    sql: ${amount} ;;
+  }
+
   measure: total_amount_usd {
     type: sum
     sql: ${amount_usd} ;;
