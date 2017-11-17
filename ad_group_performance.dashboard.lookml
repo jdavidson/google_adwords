@@ -125,20 +125,20 @@
   - title: Top 10 keyword performance (keyword)
     name: Top 10 keyword performance (keyword)
     model: adwords_demo
-    explore: keyword_stats
+    explore: master_stats
     type: looker_column
     fields:
     - keyword.criteria
-    - keyword_stats.average_cost_per_conversion
-    - keyword_stats.total_impressions
-    - keyword_stats.total_interactions
-    - keyword_stats.total_conversions
-    - keyword_stats.total_cost_usd
-    - keyword_stats.average_interaction_rate
-    - keyword_stats.average_conversion_rate
-    - keyword_stats.average_cost_per_click
+    - master_stats.average_cost_per_conversion
+    - master_stats.total_impressions
+    - master_stats.total_interactions
+    - master_stats.total_conversions
+    - master_stats.total_cost_usd
+    - master_stats.average_interaction_rate
+    - master_stats.average_conversion_rate
+    - master_stats.average_cost_per_click
     sorts:
-    - keyword_stats.total_cost_usd desc
+    - master_stats.total_cost_usd desc
     limit: 10
     column_limit: 50
     label: Top 10 Keyword Performance (keyword)
@@ -165,12 +165,12 @@
     show_silhouette: false
     totals_color: "#808080"
     hidden_fields:
-    - keyword_stats.total_impressions
-    - keyword_stats.total_interactions
-    - keyword_stats.total_conversions
-    - keyword_stats.average_interaction_rate
-    - keyword_stats.average_conversion_rate
-    - keyword_stats.average_cost_per_click
+    - master_stats.total_impressions
+    - master_stats.total_interactions
+    - master_stats.total_conversions
+    - master_stats.average_interaction_rate
+    - master_stats.average_conversion_rate
+    - master_stats.average_cost_per_click
     y_axes:
     - label: ''
       maxValue:
@@ -184,7 +184,7 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: keyword_stats.average_cost_per_conversion
+      - id: master_stats.average_cost_per_conversion
         name: Cost per Conversion
         __FILE: adwords_demo/ad_group_performance.dashboard.lookml
         __LINE_NUM: 187
@@ -202,17 +202,17 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: keyword_stats.total_cost_usd
+      - id: master_stats.total_cost_usd
         name: Total Cost USD
         __FILE: adwords_demo/ad_group_performance.dashboard.lookml
         __LINE_NUM: 205
       __FILE: adwords_demo/ad_group_performance.dashboard.lookml
       __LINE_NUM: 193
     series_types:
-      keyword_stats.average_cost_per_conversion: line
+      master_stats.average_cost_per_conversion: line
     listen:
       Ad Group Name: ad_group.ad_group_name
-      Date: keyword_stats._data_date
+      Date: master_stats._data_date
       Campaign Name: campaign.campaign_name
     row: 9
     col: 12
@@ -328,14 +328,14 @@
   - title: Top 10 audience performance (audience)
     name: Top 10 audience performance (audience)
     model: adwords_demo
-    explore: audience_stats
+    explore: master_stats
     type: looker_column
     fields:
     - audience.criteria
-    - audience_stats.average_cost_per_conversion
-    - audience_stats.total_cost_usd
+    - master_stats.average_cost_per_conversion
+    - master_stats.total_cost_usd
     sorts:
-    - audience_stats.total_cost_usd desc
+    - master_stats.total_cost_usd desc
     limit: 10
     column_limit: 50
     label: Top 10 audience performance (audience)
@@ -374,7 +374,7 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: audience_stats.average_cost_per_conversion
+      - id: master_stats.average_cost_per_conversion
         name: Audience Stats Cost per Conversion
         __FILE: adwords_demo/ad_group_performance.dashboard.lookml
         __LINE_NUM: 377
@@ -392,17 +392,17 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: audience_stats.total_cost_usd
+      - id: master_stats.total_cost_usd
         name: Audience Stats Total Cost USD
         __FILE: adwords_demo/ad_group_performance.dashboard.lookml
         __LINE_NUM: 395
       __FILE: adwords_demo/ad_group_performance.dashboard.lookml
       __LINE_NUM: 383
     series_types:
-      audience_stats.average_cost_per_conversion: line
+      master_stats.average_cost_per_conversion: line
     listen:
       Ad Group Name: ad_group.ad_group_name
-      Date: audience_stats._data_date
+      Date: master_stats._data_date
       Campaign Name: campaign.campaign_name
     row: 16
     col: 0
@@ -472,22 +472,22 @@
   - title: Keyword details (keyword)
     name: Keyword details (keyword)
     model: adwords_demo
-    explore: keyword_stats
+    explore: master_stats
     type: table
     fields:
     - keyword.criteria
     - ad_group.ad_group_name
     - campaign.campaign_name
-    - keyword_stats.average_cost_per_conversion
-    - keyword_stats.average_interaction_rate
-    - keyword_stats.average_conversion_rate
-    - keyword_stats.average_cost_per_click
-    - keyword_stats.total_impressions
-    - keyword_stats.total_interactions
-    - keyword_stats.total_conversions
-    - keyword_stats.total_cost_usd
+    - master_stats.average_cost_per_conversion
+    - master_stats.average_interaction_rate
+    - master_stats.average_conversion_rate
+    - master_stats.average_cost_per_click
+    - master_stats.total_impressions
+    - master_stats.total_interactions
+    - master_stats.total_conversions
+    - master_stats.total_cost_usd
     sorts:
-    - keyword_stats.total_cost_usd desc
+    - master_stats.total_cost_usd desc
     limit: 10
     column_limit: 50
     label: Top 10 Keyword Performance (keyword)
@@ -536,7 +536,7 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: keyword_stats.average_cost_per_conversion
+      - id: master_stats.average_cost_per_conversion
         name: Keyword Stats Average Cost per Conversion
         __FILE: adwords_demo/ad_group_performance.dashboard.lookml
         __LINE_NUM: 656
@@ -554,7 +554,7 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: keyword_stats.total_cost
+      - id: master_stats.total_cost
         name: Keyword Stats Total Cost
         __FILE: adwords_demo/ad_group_performance.dashboard.lookml
         __LINE_NUM: 674
@@ -563,7 +563,7 @@
     series_types: {}
     listen:
       Ad Group Name: ad_group.ad_group_name
-      Date: keyword_stats._data_date
+      Date: master_stats._data_date
       Campaign Name: campaign.campaign_name
     row: 30
     col: 0
@@ -572,20 +572,20 @@
   - title: Bid strategy and match cost per conversion
     name: Bid strategy and match cost per conversion
     model: adwords_demo
-    explore: keyword_stats
+    explore: master_stats
     type: looker_column
     fields:
     - keyword.bidding_strategy_type
-    - keyword_stats.average_cost_per_conversion
-    - keyword_stats.total_cost_usd
+    - master_stats.average_cost_per_conversion
+    - master_stats.total_cost_usd
     - keyword.keyword_match_type
     pivots:
     - keyword.keyword_match_type
     filters:
-      keyword_stats.average_cost_per_conversion: NOT NULL
+      master_stats.average_cost_per_conversion: NOT NULL
     sorts:
     - keyword.keyword_match_type desc 0
-    - keyword_stats.total_cost_usd desc 0
+    - master_stats.total_cost_usd desc 0
     limit: 500
     column_limit: 50
     label: Top 10 Keyword Performance (keyword)
@@ -625,7 +625,7 @@
     show_comparison_label: true
     font_size: '12'
     hidden_fields:
-    - keyword_stats.total_cost_usd
+    - master_stats.total_cost_usd
     y_axes:
     - label: ''
       maxValue:
@@ -682,7 +682,7 @@
     series_types: {}
     listen:
       Ad Group Name: ad_group.ad_group_name
-      Date: keyword_stats._data_date
+      Date: master_stats._data_date
       Campaign Name: campaign.campaign_name
     row: 16
     col: 12

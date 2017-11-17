@@ -13,6 +13,12 @@ explore: master_stats {
       ${master_stats._data_raw} = ${keyword._data_raw} ;;
     relationship: many_to_one
   }
+  join: audience {
+    view_label: "Audience"
+    sql_on: ${master_stats.unique_key} = ${audience.unique_key} AND
+      ${master_stats._data_raw} = ${audience._data_raw} ;;
+    relationship: many_to_one
+  }
   join: ad {
     view_label: "Ads"
     sql_on: ${ad.creative_id} = ${master_stats.creative_id} AND

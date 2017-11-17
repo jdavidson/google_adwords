@@ -7,14 +7,28 @@ view: master_stats {
   sql_table_name:
   {% if (ad._in_query or master_stats.creative_id._in_query) %}
     adwords_v201609.AdBasicStats_6747157124
+  {% elsif (audience._in_query) %}
+    adwords_v201609.AudienceBasicStats_6747157124
   {% elsif (keyword._in_query or master_stats.criteria_id._in_query) %}
     adwords_v201609.KeywordBasicStats_6747157124
   {% elsif (ad_group._in_query or master_stats.ad_group_id._in_query) %}
-    adwords_v201609.AdGroupBasicStats_6747157124
+    {% if master_stats.hour_of_day._in_query %}
+      adwords_v201609.HourlyAdGroupStats_6747157124
+    {% else %}
+      adwords_v201609.AdGroupBasicStats_6747157124
+    {% endif %}
   {% elsif (campaign._in_query or master_stats.campaign_id._in_query) %}
-    adwords_v201609.CampaignBasicStats_6747157124
+    {% if master_stats.hour_of_day._in_query %}
+      adwords_v201609.HourlyCampaignStats_6747157124
+    {% else %}
+      adwords_v201609.CampaignBasicStats_6747157124
+    {% endif %}
   {% else %}
-    adwords_v201609.AccountBasicStats_6747157124
+    {% if master_stats.hour_of_day._in_query %}
+      adwords_v201609.HourlyAccountStats_6747157124
+    {% else %}
+      adwords_v201609.AccountBasicStats_6747157124
+    {% endif %}
   {% endif %} ;;
 
     dimension: _data {
@@ -23,6 +37,11 @@ view: master_stats {
 
     dimension: _latest {
       sql: TIMESTAMP(${TABLE}._LATEST_DATE) ;;
+    }
+
+    dimension: hour_of_day {
+      type: number
+      sql: ${TABLE}.HourOfDay ;;
     }
 
     dimension: active_view_impressions {

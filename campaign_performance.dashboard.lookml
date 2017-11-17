@@ -854,20 +854,20 @@
   - title: Hourly Average Cost per Conversion (campaign)
     name: Hourly Average Cost per Conversion (campaign)
     model: adwords_demo
-    explore: hourly_campaign_stats
+    explore: master_stats
     type: looker_column
     fields:
-    - hourly_campaign_stats.hour_of_day
-    - hourly_campaign_stats.total_impressions
-    - hourly_campaign_stats.total_interactions
-    - hourly_campaign_stats.average_cost_per_conversion
-    - hourly_campaign_stats.total_conversions
-    - hourly_campaign_stats.total_cost_usd
-    - hourly_campaign_stats.average_interaction_rate
-    - hourly_campaign_stats.average_conversion_rate
-    - hourly_campaign_stats.average_cost_per_click
+    - master_stats.hour_of_day
+    - master_stats.total_impressions
+    - master_stats.total_interactions
+    - master_stats.average_cost_per_conversion
+    - master_stats.total_conversions
+    - master_stats.total_cost_usd
+    - master_stats.average_interaction_rate
+    - master_stats.average_conversion_rate
+    - master_stats.average_cost_per_click
     sorts:
-    - hourly_campaign_stats.hour_of_day
+    - master_stats.hour_of_day
     limit: 500
     column_limit: 50
     stacking: ''
@@ -897,14 +897,14 @@
     interpolation: linear
     label: Hourly Average Cost per Conversion
     series_types:
-      hourly_campaign_stats.average_cost_per_conversion: line
+      master_stats.average_cost_per_conversion: line
     hidden_fields:
-    - hourly_campaign_stats.total_impressions
-    - hourly_campaign_stats.total_interactions
-    - hourly_campaign_stats.total_cost
-    - hourly_campaign_stats.average_interaction_rate
-    - hourly_campaign_stats.average_conversion_rate
-    - hourly_campaign_stats.average_cost_per_click
+    - master_stats.total_impressions
+    - master_stats.total_interactions
+    - master_stats.total_cost
+    - master_stats.average_interaction_rate
+    - master_stats.average_conversion_rate
+    - master_stats.average_cost_per_click
     y_axes:
     - label: ''
       maxValue:
@@ -918,7 +918,7 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: hourly_campaign_stats.total_conversions
+      - id: master_stats.total_conversions
         name: Total Conversions
         __FILE: adwords_demo/campaign_performance.dashboard.lookml
         __LINE_NUM: 984
@@ -936,17 +936,17 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: hourly_campaign_stats.average_cost_per_conversion
+      - id: master_stats.average_cost_per_conversion
         name: Cost per Conversion
         __FILE: adwords_demo/campaign_performance.dashboard.lookml
         __LINE_NUM: 1002
       __FILE: adwords_demo/campaign_performance.dashboard.lookml
       __LINE_NUM: 990
     hidden_series:
-    - hourly_campaign_stats.total_cost_usd
+    - master_stats.total_cost_usd
     listen:
       Campaign Name: campaign.campaign_name
-      Date: hourly_campaign_stats._data_date
+      Date: master_stats._data_date
     row: 34
     col: 12
     width: 12
