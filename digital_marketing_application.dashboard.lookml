@@ -5,13 +5,13 @@
   - name: Average cost per conversion over time
     title: Average cost per conversion over time
     model: adwords_demo
-    explore: account_basic_stats
+    explore: master_stats
     type: looker_line
     fields:
-    - account_basic_stats.average_cost_per_conversion
-    - account_basic_stats._data_week
+    - master_stats.average_cost_per_conversion
+    - master_stats._data_week
     sorts:
-    - account_basic_stats._data_week desc
+    - master_stats._data_week desc
     limit: 500
     column_limit: 50
     label: Average Cost per Conversion
@@ -70,11 +70,11 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: account_basic_stats.total_impressions
+      - id: master_stats.total_impressions
         name: Campaign Stats Total Impressions
-      - id: account_basic_stats.total_interactions
+      - id: master_stats.total_interactions
         name: Campaign Stats Total Interactions
-      - id: account_basic_stats.total_conversions
+      - id: master_stats.total_conversions
         name: Campaign Stats Total Conversions
     discontinuous_nulls: false
     focus_on_hover: false
@@ -94,20 +94,20 @@
   - name: Device network multiples
     title: Device network multiples
     model: adwords_demo
-    explore: account_basic_stats
+    explore: master_stats
     type: looker_donut_multiples
     fields:
-    - account_basic_stats.device_type
-    - account_basic_stats.total_cost_usd
-    - account_basic_stats.ad_network_type
+    - master_stats.device_type
+    - master_stats.total_cost_usd
+    - master_stats.ad_network_type
     pivots:
-    - account_basic_stats.ad_network_type
+    - master_stats.ad_network_type
     filters:
-      account_basic_stats.ad_network_type: "-Other"
-      account_basic_stats.device_type: "-Unknown"
+      master_stats.ad_network_type: "-Other"
+      master_stats.device_type: "-Unknown"
     sorts:
-    - account_basic_stats.total_cost_usd desc 0
-    - account_basic_stats.ad_network_type
+    - master_stats.total_cost_usd desc 0
+    - master_stats.ad_network_type
     limit: 500
     column_limit: 50
     show_value_labels: false
@@ -166,9 +166,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: account_basic_stats.total_impressions
+      - id: master_stats.total_impressions
         name: Campaign Stats Total Impressions
-      - id: account_basic_stats.total_interactions
+      - id: master_stats.total_interactions
         name: Campaign Stats Total Interactions
         name: Campaign Stats Total Conversions
     row: 9
@@ -178,20 +178,20 @@
   - name: Campaign details
     title: Campaign details
     model: adwords_demo
-    explore: campaign_basic_stats
+    explore: master_stats
     type: table
     fields:
     - campaign.campaign_name
-    - campaign_basic_stats.total_impressions
-    - campaign_basic_stats.total_interactions
-    - campaign_basic_stats.total_conversions
-    - campaign_basic_stats.total_cost_usd
-    - campaign_basic_stats.average_interaction_rate
-    - campaign_basic_stats.average_cost_per_click
-    - campaign_basic_stats.average_conversion_rate
-    - campaign_basic_stats.average_cost_per_conversion
+    - master_stats.total_impressions
+    - master_stats.total_interactions
+    - master_stats.total_conversions
+    - master_stats.total_cost_usd
+    - master_stats.average_interaction_rate
+    - master_stats.average_cost_per_click
+    - master_stats.average_conversion_rate
+    - master_stats.average_cost_per_conversion
     sorts:
-    - campaign_basic_stats.total_cost_usd desc
+    - master_stats.total_cost_usd desc
     limit: 10
     column_limit: 50
     label: Campaign Details
@@ -229,9 +229,9 @@
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     hidden_fields:
-    - campaign_basic_stats.total_interactions
-    - campaign_basic_stats.total_conversions
-    - campaign_basic_stats.total_impressions
+    - master_stats.total_interactions
+    - master_stats.total_conversions
+    - master_stats.total_impressions
     row: 9
     col: 0
     width: 12
@@ -606,10 +606,10 @@
 #   - name: us_map
 #     title: US Map
 #     model: adwords_demo
-#     explore: account_basic_stats
+#     explore: master_stats
 #     type: looker_geo_choropleth
-#     fields: [geo_us_state.name, account_basic_stats.average_cost_per_conversion]
-#     sorts: [account_basic_stats.average_cost_per_conversion desc]
+#     fields: [geo_us_state.name, master_stats.average_cost_per_conversion]
+#     sorts: [master_stats.average_cost_per_conversion desc]
 #     limit: 500
 #     column_limit: 50
 #     map: auto
@@ -641,11 +641,11 @@
   - name: interaction_rate_over_time
     title: Interaction Rate
     model: adwords_demo
-    explore: account_basic_stats
+    explore: master_stats
     type: looker_area
-    fields: [account_basic_stats._data_week, account_basic_stats.average_interaction_rate]
-    fill_fields: [account_basic_stats._data_week]
-    sorts: [account_basic_stats._data_week desc]
+    fields: [master_stats._data_week, master_stats.average_interaction_rate]
+    fill_fields: [master_stats._data_week]
+    sorts: [master_stats._data_week desc]
     limit: 500
     column_limit: 50
     stacking: ''
@@ -677,11 +677,11 @@
   - name: cost_per_interaction_over_time
     title: Cost per Interaction
     model: adwords_demo
-    explore: account_basic_stats
+    explore: master_stats
     type: looker_area
-    fields: [account_basic_stats._data_week, account_basic_stats.average_cost_per_interaction]
-    fill_fields: [account_basic_stats._data_week]
-    sorts: [account_basic_stats._data_week desc]
+    fields: [master_stats._data_week, master_stats.average_cost_per_interaction]
+    fill_fields: [master_stats._data_week]
+    sorts: [master_stats._data_week desc]
     limit: 500
     column_limit: 50
     stacking: ''
@@ -713,11 +713,11 @@
   - name: conversion_rate_over_time
     title: Conversion Rate
     model: adwords_demo
-    explore: account_basic_stats
+    explore: master_stats
     type: looker_area
-    fields: [account_basic_stats._data_week, account_basic_stats.average_conversion_rate]
-    fill_fields: [account_basic_stats._data_week]
-    sorts: [account_basic_stats._data_week desc]
+    fields: [master_stats._data_week, master_stats.average_conversion_rate]
+    fill_fields: [master_stats._data_week]
+    sorts: [master_stats._data_week desc]
     limit: 500
     column_limit: 50
     stacking: ''
@@ -749,11 +749,11 @@
   - name: cost_per_conversion_over_time
     title: Cost per Conversion
     model: adwords_demo
-    explore: account_basic_stats
+    explore: master_stats
     type: looker_area
-    fields: [account_basic_stats._data_week, account_basic_stats.average_cost_per_conversion]
-    fill_fields: [account_basic_stats._data_week]
-    sorts: [account_basic_stats._data_week desc]
+    fields: [master_stats._data_week, master_stats.average_cost_per_conversion]
+    fill_fields: [master_stats._data_week]
+    sorts: [master_stats._data_week desc]
     limit: 500
     column_limit: 50
     stacking: ''
@@ -785,11 +785,11 @@
   - name: conversions_over_time
     title: Conversions
     model: adwords_demo
-    explore: account_basic_stats
+    explore: master_stats
     type: looker_area
-    fields: [account_basic_stats._data_week, account_basic_stats.total_conversions]
-    fill_fields: [account_basic_stats._data_week]
-    sorts: [account_basic_stats._data_week desc]
+    fields: [master_stats._data_week, master_stats.total_conversions]
+    fill_fields: [master_stats._data_week]
+    sorts: [master_stats._data_week desc]
     limit: 500
     column_limit: 50
     stacking: ''
@@ -821,11 +821,11 @@
   - name: spend_over_time
     title: Spend
     model: adwords_demo
-    explore: account_basic_stats
+    explore: master_stats
     type: looker_area
-    fields: [account_basic_stats._data_week, account_basic_stats.total_cost_usd]
-    fill_fields: [account_basic_stats._data_week]
-    sorts: [account_basic_stats._data_week desc]
+    fields: [master_stats._data_week, master_stats.total_cost_usd]
+    fill_fields: [master_stats._data_week]
+    sorts: [master_stats._data_week desc]
     limit: 500
     column_limit: 50
     stacking: ''

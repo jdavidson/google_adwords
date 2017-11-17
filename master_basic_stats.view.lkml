@@ -7,7 +7,7 @@ view: master_stats {
   sql_table_name:
   {% if (ad._in_query or master_stats.creative_id._in_query) %}
     adwords_v201609.AdBasicStats_6747157124
-  {% elsif (audience._in_query) %}
+  {% elsif (audience._in_query or master_stats.audience_criterion_id._in_query) %}
     adwords_v201609.AudienceBasicStats_6747157124
   {% elsif (keyword._in_query or master_stats.criteria_id._in_query) %}
     adwords_v201609.KeywordBasicStats_6747157124
@@ -42,6 +42,11 @@ view: master_stats {
     dimension: hour_of_day {
       type: number
       sql: ${TABLE}.HourOfDay ;;
+    }
+
+    dimension: audience_criterion_id {
+      type: number
+      sql: ${TABLE}.CriterionId ;;
     }
 
     dimension: active_view_impressions {

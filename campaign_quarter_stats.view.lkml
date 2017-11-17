@@ -1,8 +1,9 @@
 include: "stats.view.lkml"
+include: "base_quarter_stats.view.lkml"
 include: "master.explore.lkml"
 
 view: campaign_quarter_stats {
-  extends: ["stats"]
+  extends: ["stats", "base_quarter_stats"]
 
   derived_table: {
     persist_for: "24 hours"
@@ -20,35 +21,9 @@ view: campaign_quarter_stats {
       }
     }
   }
-  dimension_group: _data {
-    type: time
-    timeframes: ["quarter", "raw"]
-    convert_tz: no
-    sql: CAST(CONCAT(${TABLE}._data_quarter, '-01') AS TIMESTAMP) ;;
-  }
   dimension: campaign_id {
     type: number
   }
-  dimension: clicks {
-    type: number
-  }
-  dimension: conversions {
-    type: number
-  }
-  dimension: cost {
-    type: number
-  }
-  dimension: impressions {
-    type: number
-  }
-  dimension: interactions {
-    type: number
-  }
-  dimension: _data_last_quarter {
-    type: date_quarter
-    sql: DATE_ADD(CAST(CONCAT(${_data_quarter}, '-01') AS DATE), INTERVAL -1 QUARTER) ;;
-  }
-
   measure: total_impressions {
     drill_fields: [campaign.detail*, total_impressions]
   }

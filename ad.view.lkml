@@ -227,8 +227,8 @@ view: ad {
   }
 
   measure: count {
-    type: number
-    sql: count(${ad_group_id}) ;;
+    type: count_distinct
+    sql: ${ad_group_id} ;;
     drill_fields: [detail*]
   }
 

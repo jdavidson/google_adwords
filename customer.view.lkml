@@ -63,7 +63,8 @@ view: customer {
   }
 
   measure: count {
-    type: count
+    type: count_distinct
+    sql: ${external_customer_id} ;;
     drill_fields: [detail*]
   }
 

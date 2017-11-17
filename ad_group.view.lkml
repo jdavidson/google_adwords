@@ -158,7 +158,8 @@ view: ad_group {
   }
 
   measure: count {
-    type: count
+    type: count_distinct
+    sql: ${ad_group_id} ;;
     drill_fields: [detail*]
   }
 

@@ -11,7 +11,7 @@
       title: Total Campaigns (Campaigns)
       type: single_value
       model: adwords_demo
-      explore: campaign_stats
+      explore: master_stats
       measures: [campaign.count]
       limit: '500'
       column_limit: '50'
@@ -53,9 +53,9 @@
       title: Total Cost (Campaigns)
       type: single_value
       model: adwords_demo
-      explore: campaign_stats
-      measures: [campaign_stats.total_cost_usd]
-      sorts: [campaign_stats.total_cost_usd desc]
+      explore: master_stats
+      measures: [master_stats.total_cost_usd]
+      sorts: [master_stats.total_cost_usd desc]
       limit: '500'
       column_limit: '50'
       query_timezone: America/Los_Angeles
@@ -96,8 +96,8 @@
       title: Average Cost per Conversion (Campaigns)
       type: single_value
       model: adwords_demo
-      explore: campaign_stats
-      measures: [campaign_stats.average_cost_per_conversion]
+      explore: master_stats
+      measures: [master_stats.average_cost_per_conversion]
       limit: '500'
       column_limit: '50'
       query_timezone: America/Los_Angeles
@@ -138,9 +138,9 @@
       title: Total Impressions (Campaigns)
       type: single_value
       model: adwords_demo
-      explore: campaign_stats
-      measures: [campaign_stats.total_impressions]
-      sorts: [campaign_stats.total_impressions desc]
+      explore: master_stats
+      measures: [master_stats.total_impressions]
+      sorts: [master_stats.total_impressions desc]
       limit: '500'
       column_limit: '50'
       query_timezone: America/Los_Angeles
@@ -181,9 +181,9 @@
       title: Total Interactions (Campaigns)
       type: single_value
       model: adwords_demo
-      explore: campaign_stats
-      measures: [campaign_stats.total_interactions]
-      sorts: [campaign_stats.total_interactions desc]
+      explore: master_stats
+      measures: [master_stats.total_interactions]
+      sorts: [master_stats.total_interactions desc]
       limit: '500'
       column_limit: '50'
       query_timezone: America/Los_Angeles
@@ -224,8 +224,8 @@
       title: Average Interaction Rate (Campaigns)
       type: single_value
       model: adwords_demo
-      explore: campaign_stats
-      measures: [campaign_stats.average_interaction_rate]
+      explore: master_stats
+      measures: [master_stats.average_interaction_rate]
       limit: '500'
       column_limit: '50'
       query_timezone: America/Los_Angeles
@@ -266,9 +266,9 @@
       title: Total Clicks (Campaigns)
       type: single_value
       model: adwords_demo
-      explore: campaign_stats
-      measures: [campaign_stats.total_clicks]
-      sorts: [campaign_stats.total_clicks desc]
+      explore: master_stats
+      measures: [master_stats.total_clicks]
+      sorts: [master_stats.total_clicks desc]
       limit: '500'
       column_limit: '50'
       query_timezone: America/Los_Angeles
@@ -309,9 +309,9 @@
       title: Total Conversions (Campaigns)
       type: single_value
       model: adwords_demo
-      explore: campaign_stats
-      measures: [campaign_stats.total_conversions]
-      sorts: [campaign_stats.total_conversions desc]
+      explore: master_stats
+      measures: [master_stats.total_conversions]
+      sorts: [master_stats.total_conversions desc]
       limit: '500'
       column_limit: '50'
       query_timezone: America/Los_Angeles
@@ -353,8 +353,8 @@
       title: Average Conversion Rate
       type: single_value
       model: adwords_demo
-      explore: campaign_stats
-      measures: [campaign_stats.average_conversion_rate]
+      explore: master_stats
+      measures: [master_stats.average_conversion_rate]
       limit: '500'
       column_limit: '50'
       query_timezone: America/Los_Angeles
@@ -397,9 +397,9 @@
       title: Campaign Funnel (Campaigns)
       type: looker_column
       model: adwords_demo
-      explore: campaign_stats
-      measures: [campaign_stats.total_impressions, campaign_stats.total_interactions,
-        campaign_stats.total_conversions]
+      explore: master_stats
+      measures: [master_stats.total_impressions, master_stats.total_interactions,
+        master_stats.total_conversions]
       limit: '500'
       column_limit: '50'
       query_timezone: America/Los_Angeles
@@ -437,12 +437,12 @@
       title: Campaign Performance by Device (Campaigns)
       type: looker_column
       model: adwords_demo
-      explore: campaign_stats
-      dimensions: [campaign_stats._data_date, campaign_stats.device_type]
-      pivots: [campaign_stats.device_type]
-      fill_fields: [campaign_stats._data_date]
-      measures: [campaign_stats.total_impressions]
-      sorts: [campaign_stats._data_date desc, campaign_stats.device_type]
+      explore: master_stats
+      dimensions: [master_stats._data_date, master_stats.device_type]
+      pivots: [master_stats.device_type]
+      fill_fields: [master_stats._data_date]
+      measures: [master_stats.total_impressions]
+      sorts: [master_stats._data_date desc, master_stats.device_type]
       limit: '500'
       column_limit: '50'
       query_timezone: America/Los_Angeles
@@ -475,9 +475,9 @@
       title: Impression to Click Conversion Efficiency (Campaigns)
       type: looker_column
       model: adwords_demo
-      explore: campaign_stats
+      explore: master_stats
       dimensions: [campaign.campaign_name]
-      measures: [campaign_stats.total_impressions, campaign_stats.average_interaction_rate]
+      measures: [master_stats.total_impressions, master_stats.average_interaction_rate]
       sorts: [campaign.campaign_name desc]
       limit: '50'
       column_limit: '50'
@@ -505,22 +505,22 @@
       show_silhouette: false
       totals_color: "#808080"
       series_types:
-        campaign_stats.average_conversion_rate: line
-        campaign_stats.average_interaction_rate: line
+        master_stats.average_conversion_rate: line
+        master_stats.average_interaction_rate: line
       y_axis_reversed: false
       y_axis_max: []
       series_colors:
-        campaign_stats.average_conversion_rate: "#a9c574"
-        campaign_stats.average_interaction_rate: "#a9c574"
+        master_stats.average_conversion_rate: "#a9c574"
+        master_stats.average_interaction_rate: "#a9c574"
 
 
     - name: click_to_conversion
       title: Click to Conversion Efficiency (Campaigns)
       type: looker_column
       model: adwords_demo
-      explore: campaign_stats
+      explore: master_stats
       dimensions: [campaign.campaign_name]
-      measures: [campaign_stats.total_clicks, campaign_stats.average_conversion_rate]
+      measures: [master_stats.total_clicks, master_stats.average_conversion_rate]
       sorts: [campaign.campaign_name desc]
       limit: '50'
       column_limit: '50'
@@ -548,11 +548,11 @@
       show_silhouette: false
       totals_color: "#808080"
       series_types:
-        campaign_stats.average_conversion_rate: line
+        master_stats.average_conversion_rate: line
       y_axis_reversed: false
       y_axis_max: []
       series_colors:
-        campaign_stats.average_conversion_rate: "#a9c574"
+        master_stats.average_conversion_rate: "#a9c574"
 
 
 
@@ -560,12 +560,12 @@
       title: All Campaigns Full Details (Campaigns)
       type: table
       model: adwords_demo
-      explore: campaign_stats
+      explore: master_stats
       dimensions: [campaign.campaign_name]
-      measures: [campaign_stats.total_interactions, campaign_stats.total_impressions,
-        campaign_stats.average_interaction_rate, campaign_stats.total_conversions, campaign_stats.total_cost_usd,
-        campaign_stats.average_cost_per_conversion]
-      sorts: [campaign_stats.average_interaction_rate desc]
+      measures: [master_stats.total_interactions, master_stats.total_impressions,
+        master_stats.average_interaction_rate, master_stats.total_conversions, master_stats.total_cost_usd,
+        master_stats.average_cost_per_conversion]
+      sorts: [master_stats.average_interaction_rate desc]
       limit: '500'
       column_limit: '50'
       query_timezone: America/Los_Angeles

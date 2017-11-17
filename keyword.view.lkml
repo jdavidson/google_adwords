@@ -216,7 +216,8 @@ view: keyword {
   }
 
   measure: count {
-    type: number
+    type: count_distinct
+    sql: ${criterion_id} ;;
     drill_fields: [detail*, ad_group.detail*]
   }
 
