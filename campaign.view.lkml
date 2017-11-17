@@ -181,7 +181,7 @@ view: campaign {
 
   measure: count {
     type: count_distinct
-    sql: ${campaign_name} ;;
+    sql: ${campaign_id} ;;
     drill_fields: [campaign_name, campaign_basic_stats.total_impressions, campaign_basic_stats.total_interactions, campaign_basic_stats.total_conversions, campaign_basic_stats.total_cost_usd, campaign_basic_stats.average_interaction_rate, campaign_basic_stats.average_conversion_rate, campaign_basic_stats.average_cost_per_click, campaign_basic_stats.average_cost_per_conversion]
   }
 

@@ -5,17 +5,17 @@
   - title: Cost by ad network over time
     name: Cost by ad network over time
     model: adwords_demo
-    explore: account_basic_stats
+    explore: master_stats
     type: looker_area
     fields:
-    - account_basic_stats.ad_network_type
-    - account_basic_stats._data_week
-    - account_basic_stats.total_cost_usd
+    - master_stats.ad_network_type
+    - master_stats._data_week
+    - master_stats.total_cost_usd
     pivots:
-    - account_basic_stats.ad_network_type
+    - master_stats.ad_network_type
     sorts:
-    - account_basic_stats.ad_network_type
-    - account_basic_stats._data_week desc
+    - master_stats.ad_network_type
+    - master_stats._data_week desc
     limit: 500
     column_limit: 50
     label: Cost by ad network over time
@@ -56,7 +56,7 @@
     - "#1BD4BC"
     series_colors: {}
     listen:
-      Date: account_basic_stats._data_date
+      Date: master_stats._data_date
     row: 19
     col: 0
     width: 12
@@ -64,16 +64,16 @@
   - title: Cost by device over time
     name: Cost by device over time
     model: adwords_demo
-    explore: account_basic_stats
+    explore: master_stats
     type: looker_area
     fields:
-    - account_basic_stats.device_type
-    - account_basic_stats.total_cost_usd
-    - account_basic_stats._data_week
+    - master_stats.device_type
+    - master_stats.total_cost_usd
+    - master_stats._data_week
     pivots:
-    - account_basic_stats.device_type
+    - master_stats.device_type
     sorts:
-    - account_basic_stats.device_type
+    - master_stats.device_type
     limit: 500
     column_limit: 50
     label: Cost by device
@@ -118,7 +118,7 @@
     - "#1BD4BC"
     series_colors: {}
     listen:
-      Date: account_basic_stats._data_date
+      Date: master_stats._data_date
     row: 27
     col: 0
     width: 12
@@ -126,13 +126,13 @@
   - title: Average cost per conversion over time
     name: Average cost per conversion over time
     model: adwords_demo
-    explore: account_basic_stats
+    explore: master_stats
     type: looker_line
     fields:
-    - account_basic_stats.average_cost_per_conversion
-    - account_basic_stats._data_week
+    - master_stats.average_cost_per_conversion
+    - master_stats._data_week
     sorts:
-    - account_basic_stats._data_week desc
+    - master_stats._data_week desc
     limit: 500
     column_limit: 50
     label: Average Cost per Conversion
@@ -191,15 +191,15 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: account_basic_stats.total_impressions
+      - id: master_stats.total_impressions
         name: Campaign Stats Total Impressions
         __FILE: adwords_demo/account_performance.dashboard.lookml
         __LINE_NUM: 194
-      - id: account_basic_stats.total_interactions
+      - id: master_stats.total_interactions
         name: Campaign Stats Total Interactions
         __FILE: adwords_demo/account_performance.dashboard.lookml
         __LINE_NUM: 198
-      - id: account_basic_stats.total_conversions
+      - id: master_stats.total_conversions
         name: Campaign Stats Total Conversions
         __FILE: adwords_demo/account_performance.dashboard.lookml
         __LINE_NUM: 202
@@ -219,7 +219,7 @@
       __FILE: adwords_demo/account_performance.dashboard.lookml
       __LINE_NUM: 212
     listen:
-      Date: account_basic_stats._data_date
+      Date: master_stats._data_date
     row: 10
     col: 0
     width: 24
@@ -227,15 +227,15 @@
   - title: Funnel by ad network
     name: Funnel by ad network
     model: adwords_demo
-    explore: account_basic_stats
+    explore: master_stats
     type: looker_column
     fields:
-    - account_basic_stats.ad_network_type
-    - account_basic_stats.total_impressions
-    - account_basic_stats.total_interactions
-    - account_basic_stats.total_conversions
+    - master_stats.ad_network_type
+    - master_stats.total_impressions
+    - master_stats.total_interactions
+    - master_stats.total_conversions
     sorts:
-    - account_basic_stats.total_impressions desc
+    - master_stats.total_impressions desc
     limit: 500
     column_limit: 50
     label: Funnel by Ad Network
@@ -291,22 +291,22 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: account_basic_stats.total_impressions
+      - id: master_stats.total_impressions
         name: Campaign Stats Total Impressions
         __FILE: adwords_demo/account_performance.dashboard.lookml
         __LINE_NUM: 294
-      - id: account_basic_stats.total_interactions
+      - id: master_stats.total_interactions
         name: Campaign Stats Total Interactions
         __FILE: adwords_demo/account_performance.dashboard.lookml
         __LINE_NUM: 298
-      - id: account_basic_stats.total_conversions
+      - id: master_stats.total_conversions
         name: Campaign Stats Total Conversions
         __FILE: adwords_demo/account_performance.dashboard.lookml
         __LINE_NUM: 302
       __FILE: adwords_demo/account_performance.dashboard.lookml
       __LINE_NUM: 282
     listen:
-      Date: account_basic_stats._data_date
+      Date: master_stats._data_date
     row: 19
     col: 12
     width: 12
@@ -314,15 +314,15 @@
   - title: Funnel by device
     name: Funnel by device
     model: adwords_demo
-    explore: account_basic_stats
+    explore: master_stats
     type: looker_column
     fields:
-    - account_basic_stats.total_impressions
-    - account_basic_stats.total_interactions
-    - account_basic_stats.total_conversions
-    - account_basic_stats.device_type
+    - master_stats.total_impressions
+    - master_stats.total_interactions
+    - master_stats.total_conversions
+    - master_stats.device_type
     sorts:
-    - account_basic_stats.total_impressions desc
+    - master_stats.total_impressions desc
     limit: 500
     column_limit: 50
     label: Funnel by device
@@ -378,85 +378,26 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: account_basic_stats.total_impressions
+      - id: master_stats.total_impressions
         name: Campaign Stats Total Impressions
         __FILE: adwords_demo/account_performance.dashboard.lookml
         __LINE_NUM: 381
-      - id: account_basic_stats.total_interactions
+      - id: master_stats.total_interactions
         name: Campaign Stats Total Interactions
         __FILE: adwords_demo/account_performance.dashboard.lookml
         __LINE_NUM: 385
-      - id: account_basic_stats.total_conversions
+      - id: master_stats.total_conversions
         name: Campaign Stats Total Conversions
         __FILE: adwords_demo/account_performance.dashboard.lookml
         __LINE_NUM: 389
       __FILE: adwords_demo/account_performance.dashboard.lookml
       __LINE_NUM: 369
     listen:
-      Date: account_basic_stats._data_date
+      Date: master_stats._data_date
     row: 27
     col: 12
     width: 12
     height: 7
-  - title: Campaign details
-    name: Campaign details
-    model: adwords_demo
-    explore: campaign_basic_stats
-    type: table
-    fields:
-    - campaign.campaign_name
-    - campaign_basic_stats.total_impressions
-    - campaign_basic_stats.total_interactions
-    - campaign_basic_stats.total_conversions
-    - campaign_basic_stats.total_cost_usd
-    - campaign_basic_stats.average_interaction_rate
-    - campaign_basic_stats.average_conversion_rate
-    - campaign_basic_stats.average_cost_per_click
-    - campaign_basic_stats.average_cost_per_conversion
-    sorts:
-    - campaign_basic_stats.total_impressions desc
-    limit: 500
-    column_limit: 50
-    label: Campaign Details
-    query_timezone: America/Los_Angeles
-    show_view_names: false
-    show_row_numbers: true
-    truncate_column_names: false
-    hide_totals: false
-    hide_row_totals: false
-    table_theme: white
-    limit_displayed_rows: false
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    series_types: {}
-    enable_conditional_formatting: false
-    conditional_formatting_ignored_fields: []
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    listen:
-      Date: campaign_basic_stats._data_date
-    row: 43
-    col: 0
-    width: 24
-    height: 6
   - title: Ad spend qtd
     name: Ad spend qtd
     model: adwords_demo
@@ -516,7 +457,7 @@
     comparison_label: ''
     row: 2
     col: 0
-    width: 8
+    width: 12
     height: 4
   - title: Cost per conversion qtd
     name: Cost per conversion qtd
@@ -890,17 +831,17 @@
   - title: Day of Week Average Cost per Conversion
     name: Day of Week Average Cost per Conversion
     model: adwords_demo
-    explore: account_basic_stats
+    explore: master_stats
     type: looker_column
     fields:
-    - account_basic_stats._data_day_of_week
-    - account_basic_stats.average_cost_per_conversion
-    - account_basic_stats.total_conversions
-    - account_basic_stats.total_cost_usd
+    - master_stats._data_day_of_week
+    - master_stats.average_cost_per_conversion
+    - master_stats.total_conversions
+    - master_stats.total_cost_usd
     fill_fields:
-    - account_basic_stats._data_day_of_week
+    - master_stats._data_day_of_week
     sorts:
-    - account_basic_stats._data_day_of_week
+    - master_stats._data_day_of_week
     limit: 500
     column_limit: 50
     stacking: ''
@@ -941,7 +882,7 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: account_basic_stats.total_conversions
+      - id: master_stats.total_conversions
         name: Campaign Stats Total Conversions
         __FILE: adwords_demo/account_performance.dashboard.lookml
         __LINE_NUM: 944
@@ -959,7 +900,7 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: account_basic_stats.total_cost_usd
+      - id: master_stats.total_cost_usd
         name: Campaign Stats Total Cost USD
         __FILE: adwords_demo/account_performance.dashboard.lookml
         __LINE_NUM: 962
@@ -977,18 +918,18 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: account_basic_stats.average_cost_per_conversion
+      - id: master_stats.average_cost_per_conversion
         name: Campaign Stats Cost per Conversion
         __FILE: adwords_demo/account_performance.dashboard.lookml
         __LINE_NUM: 980
       __FILE: adwords_demo/account_performance.dashboard.lookml
       __LINE_NUM: 968
     series_types:
-      account_basic_stats.average_cost_per_conversion: line
+      master_stats.average_cost_per_conversion: line
     hidden_series:
-    - account_basic_stats.total_cost_usd
+    - master_stats.total_cost_usd
     listen:
-      Date: account_basic_stats._data_date
+      Date: master_stats._data_date
     row: 34
     col: 0
     width: 12
@@ -1053,32 +994,43 @@
     single_value_title: Conversions QTD
     comparison_label: ''
     row: 2
-    col: 15
-    width: 9
+    col: 12
+    width: 12
     height: 4
-  - title: Active Campaigns
-    name: Active Campaigns
+  - title: Campaign details
+    name: Campaign details
     model: adwords_demo
-    explore: campaign_basic_stats
-    type: single_value
+    explore: master_stats
+    type: table
     fields:
-    - campaign.count
-    limit: 500
-    custom_color_enabled: false
-    custom_color: forestgreen
-    show_single_value_title: true
-    show_comparison: false
-    comparison_type: value
-    comparison_reverse_colors: false
-    show_comparison_label: true
+    - campaign.campaign_name
+    - master_stats.total_impressions
+    - master_stats.total_interactions
+    - master_stats.total_conversions
+    - master_stats.total_cost_usd
+    - master_stats.average_interaction_rate
+    - master_stats.average_conversion_rate
+    - master_stats.average_cost_per_click
+    - master_stats.average_cost_per_conversion
+    sorts:
+    - master_stats.total_impressions desc
+    limit: 10
+    column_limit: 50
+    label: Campaign Details
+    query_timezone: America/Los_Angeles
+    show_view_names: false
+    show_row_numbers: true
+    truncate_column_names: false
+    hide_totals: false
+    hide_row_totals: false
+    table_theme: white
+    limit_displayed_rows: false
     stacking: ''
     show_value_labels: false
     label_density: 25
     legend_position: center
     x_axis_gridlines: false
     y_axis_gridlines: true
-    show_view_names: true
-    limit_displayed_rows: false
     y_axis_combined: true
     show_y_axis_labels: true
     show_y_axis_ticks: true
@@ -1094,18 +1046,25 @@
     show_silhouette: false
     totals_color: "#808080"
     series_types: {}
-    row: 2
-    col: 8
-    width: 7
-    height: 4
+    enable_conditional_formatting: false
+    conditional_formatting_ignored_fields: []
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    hidden_fields: []
+    listen:
+      Date: master_stats._data_date
+    row: 43
+    col: 0
+    width: 24
+    height: 6
   filters:
   - name: Date
     title: Date
     type: field_filter
     default_value: 2 quarters
     model: adwords_demo
-    explore: account_basic_stats
-    field: account_basic_stats._data_date
+    explore: master_stats
+    field: master_stats._data_date
     listens_to_filters: []
     allow_multiple_values: true
     required: false

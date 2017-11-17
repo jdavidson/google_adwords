@@ -5,13 +5,13 @@ view: master_stats {
   extends: [ad_criterion_base, base, stats]
 
   sql_table_name:
-  {% if master_stats.creative_id._in_query %}
+  {% if (ad._in_query or master_stats.creative_id._in_query) %}
     adwords_v201609.AdBasicStats_6747157124
-  {% elsif master_stats.criterion_id._in_query %}
+  {% elsif (keyword._in_query or master_stats.criteria_id._in_query) %}
     adwords_v201609.KeywordBasicStats_6747157124
-  {% elsif master_stats.ad_group_id._in_query %}
+  {% elsif (ad_group._in_query or master_stats.ad_group_id._in_query) %}
     adwords_v201609.AdGroupBasicStats_6747157124
-  {% elsif master_stats.campaign_id._in_query %}
+  {% elsif (campaign._in_query or master_stats.campaign_id._in_query) %}
     adwords_v201609.CampaignBasicStats_6747157124
   {% else %}
     adwords_v201609.AccountBasicStats_6747157124
