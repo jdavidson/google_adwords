@@ -350,17 +350,17 @@
       - id: master_stats.total_impressions
         name: Campaign Stats Total Impressions
         __FILE: adwords_demo/campaign_performance.dashboard.lookml
-        __LINE_NUM: 413
+        __LINE_NUM: 350
       - id: master_stats.total_interactions
         name: Campaign Stats Total Interactions
         __FILE: adwords_demo/campaign_performance.dashboard.lookml
-        __LINE_NUM: 417
+        __LINE_NUM: 354
       - id: master_stats.total_conversions
         name: Campaign Stats Total Conversions
         __FILE: adwords_demo/campaign_performance.dashboard.lookml
-        __LINE_NUM: 421
+        __LINE_NUM: 358
       __FILE: adwords_demo/campaign_performance.dashboard.lookml
-      __LINE_NUM: 401
+      __LINE_NUM: 338
     discontinuous_nulls: false
     focus_on_hover: false
     reference_lines: []
@@ -373,7 +373,7 @@
       show_label: false
       label_type: string
       __FILE: adwords_demo/campaign_performance.dashboard.lookml
-      __LINE_NUM: 431
+      __LINE_NUM: 368
     listen:
       Campaign Name: campaign.campaign_name
       Date: master_stats._data_date
@@ -575,17 +575,17 @@
       - id: master_stats.total_impressions
         name: Campaign Stats Total Impressions
         __FILE: adwords_demo/campaign_performance.dashboard.lookml
-        __LINE_NUM: 638
+        __LINE_NUM: 575
       - id: master_stats.total_interactions
         name: Campaign Stats Total Interactions
         __FILE: adwords_demo/campaign_performance.dashboard.lookml
-        __LINE_NUM: 642
+        __LINE_NUM: 579
       - id: master_stats.total_conversions
         name: Campaign Stats Total Conversions
         __FILE: adwords_demo/campaign_performance.dashboard.lookml
-        __LINE_NUM: 646
+        __LINE_NUM: 583
       __FILE: adwords_demo/campaign_performance.dashboard.lookml
-      __LINE_NUM: 626
+      __LINE_NUM: 563
     listen:
       Campaign Name: campaign.campaign_name
       Date: master_stats._data_date
@@ -726,17 +726,17 @@
       - id: master_stats.total_impressions
         name: Campaign Stats Total Impressions
         __FILE: adwords_demo/campaign_performance.dashboard.lookml
-        __LINE_NUM: 789
+        __LINE_NUM: 726
       - id: master_stats.total_interactions
         name: Campaign Stats Total Interactions
         __FILE: adwords_demo/campaign_performance.dashboard.lookml
-        __LINE_NUM: 793
+        __LINE_NUM: 730
       - id: master_stats.total_conversions
         name: Campaign Stats Total Conversions
         __FILE: adwords_demo/campaign_performance.dashboard.lookml
-        __LINE_NUM: 797
+        __LINE_NUM: 734
       __FILE: adwords_demo/campaign_performance.dashboard.lookml
-      __LINE_NUM: 777
+      __LINE_NUM: 714
     listen:
       Campaign Name: campaign.campaign_name
       Date: master_stats._data_date
@@ -801,9 +801,9 @@
       - id: master_stats.total_conversions
         name: Campaign Stats Total Conversions
         __FILE: adwords_demo/campaign_performance.dashboard.lookml
-        __LINE_NUM: 864
+        __LINE_NUM: 801
       __FILE: adwords_demo/campaign_performance.dashboard.lookml
-      __LINE_NUM: 852
+      __LINE_NUM: 789
     - label:
       maxValue:
       minValue:
@@ -819,9 +819,9 @@
       - id: master_stats.total_cost_usd
         name: Campaign Stats Total Cost USD
         __FILE: adwords_demo/campaign_performance.dashboard.lookml
-        __LINE_NUM: 882
+        __LINE_NUM: 819
       __FILE: adwords_demo/campaign_performance.dashboard.lookml
-      __LINE_NUM: 870
+      __LINE_NUM: 807
     - label:
       maxValue:
       minValue:
@@ -837,9 +837,9 @@
       - id: master_stats.average_cost_per_conversion
         name: Campaign Stats Cost per Conversion
         __FILE: adwords_demo/campaign_performance.dashboard.lookml
-        __LINE_NUM: 900
+        __LINE_NUM: 837
       __FILE: adwords_demo/campaign_performance.dashboard.lookml
-      __LINE_NUM: 888
+      __LINE_NUM: 825
     series_types:
       master_stats.average_cost_per_conversion: line
     hidden_series:
@@ -921,9 +921,9 @@
       - id: master_stats.total_conversions
         name: Total Conversions
         __FILE: adwords_demo/campaign_performance.dashboard.lookml
-        __LINE_NUM: 984
+        __LINE_NUM: 921
       __FILE: adwords_demo/campaign_performance.dashboard.lookml
-      __LINE_NUM: 972
+      __LINE_NUM: 909
     - label:
       maxValue:
       minValue:
@@ -939,9 +939,9 @@
       - id: master_stats.average_cost_per_conversion
         name: Cost per Conversion
         __FILE: adwords_demo/campaign_performance.dashboard.lookml
-        __LINE_NUM: 1002
+        __LINE_NUM: 939
       __FILE: adwords_demo/campaign_performance.dashboard.lookml
-      __LINE_NUM: 990
+      __LINE_NUM: 927
     hidden_series:
     - master_stats.total_cost_usd
     listen:
@@ -951,75 +951,6 @@
     col: 12
     width: 12
     height: 7
-  - title: Campaign budget utilization
-    name: Campaign budget utilization
-    model: adwords_demo
-    explore: campaign_budget_stats
-    type: looker_column
-    fields:
-    - campaign_budget_stats.percent_used_budget_tier
-    - campaign_budget_stats.total_cost_usd
-    - campaign_budget_stats._data_week
-    pivots:
-    - campaign_budget_stats.percent_used_budget_tier
-    fill_fields:
-    - campaign_budget_stats._data_week
-    sorts:
-    - campaign_budget_stats.percent_used_budget_tier
-    - campaign_budget_stats._data_week desc
-    limit: 500
-    column_limit: 50
-    label: Campaign Budget Utilization
-    stacking: normal
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: true
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    show_null_points: true
-    point_style: none
-    interpolation: linear
-    show_row_numbers: true
-    truncate_column_names: false
-    hide_totals: false
-    hide_row_totals: false
-    table_theme: editable
-    enable_conditional_formatting: false
-    conditional_formatting_ignored_fields: []
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    series_types: {}
-    column_spacing_ratio:
-    colors:
-    - "#858E93"
-    - "#416E9A"
-    - "#BED1E2"
-    - "#C26B42"
-    - "#1BD4BC"
-    series_colors: {}
-    listen:
-      Campaign Name: campaign.campaign_name
-      Date: campaign_budget_stats._data_date
-    row: 41
-    col: 0
-    width: 24
-    height: 8
   - title: Ad group details
     name: Ad group details
     model: adwords_demo
@@ -1143,6 +1074,75 @@
     col: 12
     width: 12
     height: 4
+  - title: Campaign budget utilization
+    name: Campaign budget utilization
+    model: adwords_demo
+    explore: campaign_budget_stats
+    type: looker_column
+    fields:
+    - campaign_budget_stats.percent_used_budget_tier
+    - campaign_budget_stats.total_cost_usd
+    - campaign_budget_stats._data_week
+    pivots:
+    - campaign_budget_stats.percent_used_budget_tier
+    fill_fields:
+    - campaign_budget_stats._data_week
+    sorts:
+    - campaign_budget_stats.percent_used_budget_tier
+    - campaign_budget_stats._data_week desc
+    limit: 500
+    column_limit: 50
+    label: Campaign Budget Utilization
+    stacking: normal
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    show_null_points: true
+    point_style: none
+    interpolation: linear
+    show_row_numbers: true
+    truncate_column_names: false
+    hide_totals: false
+    hide_row_totals: false
+    table_theme: editable
+    enable_conditional_formatting: false
+    conditional_formatting_ignored_fields: []
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    series_types: {}
+    column_spacing_ratio:
+    colors:
+    - "#858E93"
+    - "#416E9A"
+    - "#BED1E2"
+    - "#C26B42"
+    - "#1BD4BC"
+    series_colors: {}
+    listen:
+      Campaign Name: campaign.campaign_name
+      Date: campaign_budget_stats._data_date
+    row: 41
+    col: 0
+    width: 24
+    height: 8
   filters:
   - name: Campaign Name
     title: Campaign Name
