@@ -10,6 +10,7 @@ view: campaign_quarter_stats {
     explore_source: master_stats {
       column: _data_quarter {}
       column: campaign_id {}
+      column: external_customer_id {}
       column: cost { field: master_stats.total_cost }
       column: clicks { field: master_stats.total_clicks }
       column: conversions { field: master_stats.total_conversions }
@@ -22,6 +23,9 @@ view: campaign_quarter_stats {
     }
   }
   dimension: campaign_id {
+    type: number
+  }
+  dimension: external_customer_id {
     type: number
   }
   measure: total_impressions {
