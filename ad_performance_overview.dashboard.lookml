@@ -8,10 +8,10 @@
   elements:
 
     - name: total_ads
-      title: Total Keywords
+      title: Total Keywords (Ads)
       type: single_value
-      model: google_adwords
-      explore: ad_stats
+      model: adwords_demo
+      explore: master_stats
       measures: [ad.count]
       limit: '500'
       column_limit: '50'
@@ -49,13 +49,13 @@
       height: 1
       width: 4
 
-    - name: total_cost
-      title: Total Cost
+    - name: total_cost_usd
+      title: Total Cost (Ads)
       type: single_value
-      model: google_adwords
-      explore: ad_stats
-      measures: [ad_stats.total_cost]
-      sorts: [ad_stats.total_cost desc]
+      model: adwords_demo
+      explore: master_stats
+      measures: [master_stats.total_cost_usd]
+      sorts: [master_stats.total_cost_usd desc]
       limit: '500'
       column_limit: '50'
       query_timezone: America/Los_Angeles
@@ -93,11 +93,11 @@
       width: 4
 
     - name: average_cost_per_conversion
-      title: Average Cost per Conversion
+      title: Average Cost per Conversion (Ads)
       type: single_value
-      model: google_adwords
-      explore: ad_stats
-      measures: [ad_stats.average_cost_per_conversion]
+      model: adwords_demo
+      explore: master_stats
+      measures: [master_stats.average_cost_per_conversion]
       limit: '500'
       column_limit: '50'
       query_timezone: America/Los_Angeles
@@ -135,12 +135,12 @@
       width: 4
 
     - name: total_impressions
-      title: Total Impressions
+      title: Total Impressions (Ads)
       type: single_value
-      model: google_adwords
-      explore: ad_stats
-      measures: [ad_stats.total_impressions]
-      sorts: [ad_stats.total_impressions desc]
+      model: adwords_demo
+      explore: master_stats
+      measures: [master_stats.total_impressions]
+      sorts: [master_stats.total_impressions desc]
       limit: '500'
       column_limit: '50'
       query_timezone: America/Los_Angeles
@@ -178,12 +178,12 @@
       width: 4
 
     - name: total_interactions
-      title: Total Interactions
+      title: Total Interactions (Ads)
       type: single_value
-      model: google_adwords
-      explore: ad_stats
-      measures: [ad_stats.total_interactions]
-      sorts: [ad_stats.total_interactions desc]
+      model: adwords_demo
+      explore: master_stats
+      measures: [master_stats.total_interactions]
+      sorts: [master_stats.total_interactions desc]
       limit: '500'
       column_limit: '50'
       query_timezone: America/Los_Angeles
@@ -221,11 +221,11 @@
       width: 4
 
     - name: average_interaction_rate
-      title: Average Interaction Rate
+      title: Average Interaction Rate (Ads)
       type: single_value
-      model: google_adwords
-      explore: ad_stats
-      measures: [ad_stats.average_interaction_rate]
+      model: adwords_demo
+      explore: master_stats
+      measures: [master_stats.average_interaction_rate]
       limit: '500'
       column_limit: '50'
       query_timezone: America/Los_Angeles
@@ -263,12 +263,12 @@
       width: 4
 
     - name: total_clicks
-      title: Total Clicks
+      title: Total Clicks (Ads)
       type: single_value
-      model: google_adwords
-      explore: ad_stats
-      measures: [ad_stats.total_clicks]
-      sorts: [ad_stats.total_clicks desc]
+      model: adwords_demo
+      explore: master_stats
+      measures: [master_stats.total_clicks]
+      sorts: [master_stats.total_clicks desc]
       limit: '500'
       column_limit: '50'
       query_timezone: America/Los_Angeles
@@ -306,12 +306,12 @@
       width: 4
 
     - name: total_conversions
-      title: Total Conversions
+      title: Total Conversions (Ads)
       type: single_value
-      model: google_adwords
-      explore: ad_stats
-      measures: [ad_stats.total_conversions]
-      sorts: [ad_stats.total_conversions desc]
+      model: adwords_demo
+      explore: master_stats
+      measures: [master_stats.total_conversions]
+      sorts: [master_stats.total_conversions desc]
       limit: '500'
       column_limit: '50'
       query_timezone: America/Los_Angeles
@@ -350,11 +350,11 @@
 
 
     - name: average_conversion_rate
-      title: Average Conversion Rate
+      title: Average Conversion Rate (Ads)
       type: single_value
-      model: google_adwords
-      explore: ad_stats
-      measures: [ad_stats.average_conversion_rate]
+      model: adwords_demo
+      explore: master_stats
+      measures: [master_stats.average_conversion_rate]
       limit: '500'
       column_limit: '50'
       query_timezone: America/Los_Angeles
@@ -394,14 +394,14 @@
 
 
     - name: ad_performance_over_time
-      title: Ad Performance over Time
+      title: Ad Performance over Time (Ads)
       type: looker_column
-      model: google_adwords
-      explore: ad_stats
-      dimensions: [ad_stats._data_date]
-      fill_fields: [ad_stats._data_date]
-      measures: [ad_stats.total_impressions, ad_stats.total_clicks, ad_stats.total_conversions]
-      sorts: [ad_stats._data_date desc]
+      model: adwords_demo
+      explore: master_stats
+      dimensions: [master_stats._data_date]
+      fill_fields: [master_stats._data_date]
+      measures: [master_stats.total_impressions, master_stats.total_clicks, master_stats.total_conversions]
+      sorts: [master_stats._data_date desc]
       limit: '500'
       column_limit: '50'
       query_timezone: America/Los_Angeles
@@ -429,15 +429,15 @@
       totals_color: "#808080"
 
     - name: ad_efficiency_over_time
-      title: Ad Efficiency Over Time
+      title: Ad Efficiency Over Time (Ads)
       type: looker_line
-      model: google_adwords
-      explore: ad_stats
-      dimensions: [ad_stats._data_date]
-      fill_fields: [ad_stats._data_date]
-      measures: [ad_stats.average_interaction_rate, ad_stats.average_conversion_rate,
-        ad_stats.average_cost_per_click]
-      sorts: [ad_stats._data_date desc]
+      model: adwords_demo
+      explore: master_stats
+      dimensions: [master_stats._data_date]
+      fill_fields: [master_stats._data_date]
+      measures: [master_stats.average_interaction_rate, master_stats.average_conversion_rate,
+        master_stats.average_cost_per_click]
+      sorts: [master_stats._data_date desc]
       limit: '500'
       column_limit: '50'
       query_timezone: America/Los_Angeles
@@ -470,17 +470,16 @@
 
 
     - name: ad_keyword_performance
-      title: Ad Keyword Performance
+      title: Ad Keyword Performance (Ads)
       type: table
-      model: google_adwords
-      explore: ad_stats
+      model: adwords_demo
+      explore: master_stats
       dimensions: [ad.headline_part1]
-      measures: [ad_stats.total_impressions, ad_stats.total_clicks, ad_stats.average_interaction_rate,
-        ad_stats.total_conversions, ad_stats.average_conversion_rate, ad_stats.total_cost,
-        ad_stats.total_cost_per_click]
+      measures: [master_stats.total_impressions, master_stats.total_clicks, master_stats.average_interaction_rate,
+        master_stats.total_conversions, master_stats.average_conversion_rate, master_stats.total_cost_usd]
       filters:
         ad.headline_part1: "-NULL"
-      sorts: [ad_stats.total_impressions desc]
+      sorts: [master_stats.total_impressions desc]
       limit: '500'
       column_limit: '50'
       query_timezone: America/Los_Angeles
@@ -514,13 +513,13 @@
       series_types: {}
 
     - name: add_a_unique_name_1487316761
-      title: Ad Performance
+      title: Ad Performance (Ads)
       type: looker_bar
-      model: google_adwords
-      explore: ad_stats
+      model: adwords_demo
+      explore: master_stats
       dimensions: [ad.creative_id]
-      measures: [ad_stats.average_conversion_rate, ad_stats.total_conversions]
-      sorts: [ad_stats.total_conversions desc]
+      measures: [master_stats.average_conversion_rate, master_stats.total_conversions]
+      sorts: [master_stats.total_conversions desc]
       limit: '10'
       column_limit: '50'
       query_timezone: America/Los_Angeles
@@ -547,9 +546,9 @@
       show_silhouette: false
       totals_color: "#808080"
       series_types:
-        ad_stats.average_conversion_rate: line
+        master_stats.average_conversion_rate: line
       column_spacing_ratio: 0.2
       series_labels: {}
       series_colors:
-        ad_stats.total_conversions: "#1D98D3"
-        ad_stats.average_conversion_rate: "#3B4260"
+        master_stats.total_conversions: "#1D98D3"
+        master_stats.average_conversion_rate: "#3B4260"

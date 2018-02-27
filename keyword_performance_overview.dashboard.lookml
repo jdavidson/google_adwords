@@ -8,10 +8,10 @@
   elements:
 
     - name: total_keywords
-      title: Total Keywords
+      title: Total Keywords (Keywords)
       type: single_value
-      model: google_adwords
-      explore: keyword_stats
+      model: adwords_demo
+      explore: master_stats
       measures: [keyword.count]
       limit: '500'
       column_limit: '50'
@@ -49,13 +49,13 @@
       height: 1
       width: 4
 
-    - name: total_cost
-      title: Total Cost
+    - name: total_cost_usd
+      title: Total Cost (Keywords)
       type: single_value
-      model: google_adwords
-      explore: keyword_stats
-      measures: [keyword_stats.total_cost]
-      sorts: [keyword_stats.total_cost desc]
+      model: adwords_demo
+      explore: master_stats
+      measures: [master_stats.total_cost_usd]
+      sorts: [master_stats.total_cost_usd desc]
       limit: '500'
       column_limit: '50'
       query_timezone: America/Los_Angeles
@@ -93,11 +93,11 @@
       width: 4
 
     - name: average_cost_per_conversion
-      title: Average Cost per Conversion
+      title: Average Cost per Conversion (Keywords)
       type: single_value
-      model: google_adwords
-      explore: keyword_stats
-      measures: [keyword_stats.average_cost_per_conversion]
+      model: adwords_demo
+      explore: master_stats
+      measures: [master_stats.average_cost_per_conversion]
       limit: '500'
       column_limit: '50'
       query_timezone: America/Los_Angeles
@@ -135,12 +135,12 @@
       width: 4
 
     - name: total_impressions
-      title: Total Impressions
+      title: Total Impressions (Keywords)
       type: single_value
-      model: google_adwords
-      explore: keyword_stats
-      measures: [keyword_stats.total_impressions]
-      sorts: [keyword_stats.total_impressions desc]
+      model: adwords_demo
+      explore: master_stats
+      measures: [master_stats.total_impressions]
+      sorts: [master_stats.total_impressions desc]
       limit: '500'
       column_limit: '50'
       query_timezone: America/Los_Angeles
@@ -178,12 +178,12 @@
       width: 4
 
     - name: total_interactions
-      title: Total Interactions
+      title: Total Interactions (Keywords)
       type: single_value
-      model: google_adwords
-      explore: keyword_stats
-      measures: [keyword_stats.total_interactions]
-      sorts: [keyword_stats.total_interactions desc]
+      model: adwords_demo
+      explore: master_stats
+      measures: [master_stats.total_interactions]
+      sorts: [master_stats.total_interactions desc]
       limit: '500'
       column_limit: '50'
       query_timezone: America/Los_Angeles
@@ -221,11 +221,11 @@
       width: 4
 
     - name: average_interaction_rate
-      title: Average Interaction Rate
+      title: Average Interaction Rate (Keywords)
       type: single_value
-      model: google_adwords
-      explore: keyword_stats
-      measures: [keyword_stats.average_interaction_rate]
+      model: adwords_demo
+      explore: master_stats
+      measures: [master_stats.average_interaction_rate]
       limit: '500'
       column_limit: '50'
       query_timezone: America/Los_Angeles
@@ -263,12 +263,12 @@
       width: 4
 
     - name: total_clicks
-      title: Total Clicks
+      title: Total Clicks (Keywords)
       type: single_value
-      model: google_adwords
-      explore: keyword_stats
-      measures: [keyword_stats.total_clicks]
-      sorts: [keyword_stats.total_clicks desc]
+      model: adwords_demo
+      explore: master_stats
+      measures: [master_stats.total_clicks]
+      sorts: [master_stats.total_clicks desc]
       limit: '500'
       column_limit: '50'
       query_timezone: America/Los_Angeles
@@ -306,12 +306,12 @@
       width: 4
 
     - name: total_conversions
-      title: Total Conversions
+      title: Total Conversions (Keywords)
       type: single_value
-      model: google_adwords
-      explore: keyword_stats
-      measures: [keyword_stats.total_conversions]
-      sorts: [keyword_stats.total_conversions desc]
+      model: adwords_demo
+      explore: master_stats
+      measures: [master_stats.total_conversions]
+      sorts: [master_stats.total_conversions desc]
       limit: '500'
       column_limit: '50'
       query_timezone: America/Los_Angeles
@@ -350,11 +350,11 @@
 
 
     - name: average_conversion_rate
-      title: Average Conversion Rate
+      title: Average Conversion Rate (Keywords)
       type: single_value
-      model: google_adwords
-      explore: keyword_stats
-      measures: [keyword_stats.average_conversion_rate]
+      model: adwords_demo
+      explore: master_stats
+      measures: [master_stats.average_conversion_rate]
       limit: '500'
       column_limit: '50'
       query_timezone: America/Los_Angeles
@@ -392,21 +392,21 @@
       width: 4
 
     - name: keyword_efficiency_over_time
-      title: Keyword Efficiency Over Time
+      title: Keyword Efficiency Over Time (Keywords)
       type: looker_line
-      model: google_adwords
-      explore: keyword_stats
-      dimensions: [keyword_stats._data_date]
-      fill_fields: [keyword_stats._data_date]
-      measures: [keyword_stats.average_conversion_rate, keyword_stats.average_interaction_rate,
-        keyword_stats.average_cost_per_conversion, keyword_stats.average_cost_per_click]
+      model: adwords_demo
+      explore: master_stats
+      dimensions: [master_stats._data_date]
+      fill_fields: [master_stats._data_date]
+      measures: [master_stats.average_conversion_rate, master_stats.average_interaction_rate,
+        master_stats.average_cost_per_conversion, master_stats.average_cost_per_click]
       dynamic_fields:
       - table_calculation: average_cost_per_conversion_in_100s
         label: Average Cost per Conversion (in 100's)
-        expression: "${keyword_stats.average_cost_per_conversion}/100"
+        expression: "${master_stats.average_cost_per_conversion}/100"
         value_format:
         value_format_name: usd
-      sorts: [keyword_stats._data_date desc]
+      sorts: [master_stats._data_date desc]
       limit: '500'
       column_limit: '50'
       query_timezone: America/Los_Angeles
@@ -436,17 +436,17 @@
       show_silhouette: false
       totals_color: "#808080"
       series_types: {}
-      hidden_fields: [keyword_stats.average_cost_per_conversion]
+      hidden_fields: [master_stats.average_cost_per_conversion]
 
 
     - name: keyword_funnel_by_device
-      title: Keyword Funnel by Device
+      title: Keyword Funnel by Device (Keywords)
       type: looker_column
-      model: google_adwords
-      explore: keyword_stats
-      dimensions: [keyword_stats.device]
-      measures: [keyword_stats.total_impressions, keyword_stats.total_clicks, keyword_stats.total_conversions]
-      sorts: [keyword_stats.total_impressions desc]
+      model: adwords_demo
+      explore: master_stats
+      dimensions: [master_stats.device_type]
+      measures: [master_stats.total_impressions, master_stats.total_clicks, master_stats.total_conversions]
+      sorts: [master_stats.total_impressions desc]
       limit: '500'
       column_limit: '50'
       query_timezone: America/Los_Angeles

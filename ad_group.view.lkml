@@ -1,35 +1,15 @@
+include: "entity_base.view.lkml"
+
 view: ad_group {
-  sql_table_name: (select * from `bigquery-connectors.adwords_v201609.AdGroup_6747157124` where _LATEST_DATE = _DATA_DATE)  ;;
-## must limit the table scope using latest_date = _data_date to ensure we're always using the latest recorded informaiton
+  extends: [entity_base]
+  sql_table_name: adwords_v201609.AdGroup_6747157124 ;;
 
-
-
-  dimension_group: _data {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
-    sql: ${TABLE}._DATA_DATE ;;
+  dimension: _data {
+    sql: TIMESTAMP(${TABLE}._DATA_DATE) ;;
   }
 
-  dimension_group: _latest {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
-    sql: ${TABLE}._LATEST_DATE ;;
+  dimension: _latest {
+    sql: TIMESTAMP(${TABLE}._LATEST_DATE) ;;
   }
 
   dimension: ad_group_desktop_bid_modifier {
@@ -50,7 +30,21 @@ view: ad_group {
 
   dimension: ad_group_name {
     type: string
-    sql: ${TABLE}.AdGroupName ;;
+    sql: CASE
+      WHEN ${TABLE}.AdGroupName = "Tableau" THEN "Competition"
+      WHEN ${TABLE}.AdGroupName = "All Visitors [Image]" THEN "All Visitors [Image]"
+      WHEN ${TABLE}.AdGroupName = "All Visitors [Text]" THEN "All Visitors [Text]"
+      WHEN ${TABLE}.AdGroupName = "Creative Market 60sec" THEN "Creative Market 60sec"
+      WHEN ${TABLE}.AdGroupName = "Cake" THEN "Cake"
+      WHEN ${TABLE}.AdGroupName = "Business Intelligence" THEN "Gadget"
+      WHEN ${TABLE}.AdGroupName = "Business Intelligence Software" THEN "Tool"
+      ELSE "Gizmo" END ;;
+    link: {
+      label: "Ad Group Dashboard"
+      url: "/dashboards/adwords_demo::ad_performance?Ad%20Group%20Name={{ value | encode_uri }}&Campaign%20Name={{ campaign.campaign_name._value | encode_uri }}"
+      icon_url: "http://www.looker.com/favicon.ico"
+    }
+    required_fields: [campaign.campaign_name]
   }
 
   dimension: ad_group_status {
@@ -99,17 +93,20 @@ view: ad_group {
   }
 
   dimension: cpc_bid {
+    hidden: yes
     type: string
     sql: ${TABLE}.CpcBid ;;
   }
 
   dimension: cpm_bid {
+    hidden: yes
     type: number
     value_format_name: id
     sql: ${TABLE}.CpmBid ;;
   }
 
   dimension: cpv_bid {
+    hidden: yes
     type: string
     sql: ${TABLE}.CpvBid ;;
   }
@@ -140,6 +137,7 @@ view: ad_group {
   }
 
   dimension: target_cpa {
+    hidden: yes
     type: number
     sql: ${TABLE}.TargetCpa ;;
   }
@@ -160,7 +158,33 @@ view: ad_group {
   }
 
   measure: count {
-    type: count
-    drill_fields: [ad_group_name, bidding_strategy_name]
+    type: count_distinct
+    sql: ${ad_group_id} ;;
+    drill_fields: [detail*]
+  }
+
+  dimension: cpc_bid_usd {
+    type: number
+    sql: (${cpc_bid} / 1000000)  ;;
+  }
+
+  dimension: cpm_bid_usd {
+    type: number
+    sql: (${cpm_bid} / 1000000) ;;
+  }
+
+  dimension: cpv_bid_usd {
+    type: number
+    sql: (${cpv_bid} / 1000000) ;;
+  }
+
+  dimension: target_cpa_usd {
+    type: number
+    sql: (${target_cpa} / 1000000) ;;
+  }
+
+  # ----- Detail ------
+  set: detail {
+    fields: [ad_group_id, ad_group_name, ad_group_status, cpc_bid, ad.count, keyword.count]
   }
 }

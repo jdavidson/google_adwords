@@ -1,50 +1,15 @@
+include: "entity_base.view.lkml"
+
 view: campaign {
-  sql_table_name: (select * from `bigquery-connectors.adwords_v201609.Campaign_6747157124` where _LATEST_DATE = _DATA_DATE) ;;
-## must limit the table scope using latest_date = _data_date to ensure we're always using the latest recorded informaiton
+  extends: [entity_base]
+  sql_table_name: adwords_v201609.Campaign_6747157124 ;;
 
-## In order to make a primary key, _data_date must be parsed to an int64 to match "campaign_id" data type
-## Primary keys are necessaty fpr symmetric aggregates
-#   dimension: data_date_cast_string {
-#     type: string
-#     sql: CAST(${TABLE}._DATA_DATE AS STRING) ;;
-#   }
-#
-#   dimension: data_date_cast_int {
-#     type: number
-#     sql: CAST(${data_date_cast_string} AS INT64) ;;
-#   }
-#
-#   dimension: unique_campaign_key {
-#     type: string
-#     sql: CONCAT(${data_date_cast_int},${campaign_id}) ;;
-
-
-  dimension_group: data {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
-    sql: ${TABLE}._DATA_DATE ;;
+  dimension: _data {
+    sql: TIMESTAMP(${TABLE}._DATA_DATE) ;;
   }
 
-  dimension_group: _latest {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
-    sql: ${TABLE}._LATEST_DATE ;;
+  dimension: _latest {
+    sql: TIMESTAMP(${TABLE}._LATEST_DATE) ;;
   }
 
   dimension: advertising_channel_sub_type {
@@ -105,8 +70,20 @@ view: campaign {
 
   dimension: campaign_name {
     type: string
-    sql: ${TABLE}.CampaignName ;;
-    html: Campaign Name ;;
+    sql: CASE
+      WHEN ${TABLE}.CampaignName = "NA - Search - Competition" THEN "NA - Search - Competition"
+      WHEN ${TABLE}.CampaignName = "NA - Search - BI - Tool" THEN "NA - Search - Widget"
+      WHEN ${TABLE}.CampaignName = "NA - Search - Business Intelligence Software" THEN "NA - Search - Gizmo"
+      WHEN ${TABLE}.CampaignName = "NA - Display - Remarketing Image Nov 2016" THEN "NA - Display - Image"
+      WHEN ${TABLE}.CampaignName = "NA - Search - Brand" THEN "NA - Search - Brand"
+      WHEN ${TABLE}.CampaignName = "NA - Search - Data Visualization" THEN "NA - Search - Gadget"
+      WHEN ${TABLE}.CampaignName = "NA - Search - Data Analytics Tools" THEN "NA - Search - Tool"
+      ELSE "NA - Display - Gadget" END ;;
+    link: {
+      label: "Campaign Dashboard"
+      url: "/dashboards/adwords_demo::campaign_performance?Campaign%20Name={{ value | encode_uri }}"
+      icon_url: "http://www.looker.com/favicon.ico"
+    }
   }
 
   dimension: campaign_status {
@@ -203,8 +180,30 @@ view: campaign {
   }
 
   measure: count {
+    type: count_distinct
+    sql: ${campaign_id} ;;
+    drill_fields: [campaign_name, campaign_basic_stats.total_impressions, campaign_basic_stats.total_interactions, campaign_basic_stats.total_conversions, campaign_basic_stats.total_cost_usd, campaign_basic_stats.average_interaction_rate, campaign_basic_stats.average_conversion_rate, campaign_basic_stats.average_cost_per_click, campaign_basic_stats.average_cost_per_conversion]
+  }
+
+  dimension: amount_usd {
+    description: "Daily Budget in USD"
     type: number
-    sql: count(${campaign_id}) * rand()  ;;
-    drill_fields: [campaign_name, bidding_strategy_name]
+    sql: (${amount}  / 1000000) ;;
+  }
+
+  measure: total_amount {
+    type: sum
+    sql: ${amount} ;;
+  }
+
+  measure: total_amount_usd {
+    type: sum
+    sql: ${amount_usd} ;;
+    value_format_name: usd_0
+  }
+
+  # ----- Detail ------
+  set: detail {
+    fields: [campaign_id, campaign_name, campaign_status, ad_group.count, ad.count, keyword.count]
   }
 }

@@ -1,44 +1,15 @@
+include: "entity_base.view.lkml"
+
 view: ad {
-  sql_table_name: (select * from `bigquery-connectors.adwords_v201609.Ad_6747157124` where _LATEST_DATE = _DATA_DATE)  ;;
-## must limit the table scope using latest_date = _data_date to ensure we're always using the latest recorded informaiton
+  extends: [entity_base]
+  sql_table_name: adwords_v201609.Ad_6747157124 ;;
 
-  dimension: block_name {
-    type: string
-    sql: "Adwords" ;;
-    link: {
-      url: "https://googlecloud.looker.com/dashboards/55"
-      label: "Adwords Dashboard"
-      icon_url: "http://www.looker.com/favicon.ico"
-    }
+  dimension: _data {
+    sql: TIMESTAMP(${TABLE}._DATA_DATE) ;;
   }
 
-
-  dimension_group: _data {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
-    sql: (TIMESTAMP(${TABLE}._DATA_DATE)) ;;
-  }
-
-  dimension_group: _latest {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
-    sql: (TIMESTAMP(${TABLE}._LATEST_DATE)) ;;
+  dimension: _latest {
+    sql: TIMESTAMP(${TABLE}._LATEST_DATE) ;;
   }
 
   dimension: ad_group_ad_disapproval_reasons {
@@ -105,37 +76,6 @@ view: ad {
     type: number
     primary_key: yes
     sql: ${TABLE}.CreativeId ;;
-    html: <p> Sample Ad ID </p> ;;
-    action: {
-      label: "Change Bid Price"
-      url: "https://www.looker.com"
-      icon_url: "https://www.google.com/favicon.ico"
-      form_param: {
-        name: "Change Bid Price"
-        type: string
-        required:  yes
-      }
-    }
-    action: {
-      label: "Change Status"
-      url: "https://www.looker.com"
-      icon_url: "https://www.google.com/favicon.ico"
-      form_param: {
-        name: "Change Status"
-        type: select
-        default: "Pause Campaign"
-        option: {
-          name: "Pause Campaign"
-          label: "Pause Campaign"
-        }
-        option: {
-          name: "Resume Campaign"
-          label: "Resume Campaign"
-        }
-        required:  yes
-      }
-    }
-
   }
 
   dimension: creative_tracking_url_template {
@@ -196,7 +136,6 @@ view: ad {
   dimension: headline_part1 {
     type: string
     sql: ${TABLE}.HeadlinePart1 ;;
-    html: Sample Keyword Name ;;
   }
 
   dimension: headline_part2 {
@@ -264,9 +203,37 @@ view: ad {
     sql: ${TABLE}.Trademarks ;;
   }
 
+  dimension: creative {
+    type: string
+    sql: CASE
+      WHEN ${headline_part1} = "Compare Top 20 BI Tools" THEN "Compare Gadgets"
+      WHEN ${headline_part1} = "Looker - Watch Product Demo" THEN "Compare Widget Vendors"
+      WHEN ${headline_part1} = "Business Intelligence" THEN "Best Gizmo based on Customer Feedback"
+      WHEN ${headline} = "Ad name: 300x250; 300 x 250" THEN "Gadget and Widgets and Gizmos. Oh my!"
+      WHEN ${headline} = "Creative Market without stats" THEN "Best tool in the market"
+      ELSE "Best Gizmos" END;;
+    link: {
+      url: "https://adwords.google.com"
+      icon_url: "https://www.gstatic.com/awn/awsm/brt/awn_awsm_20171108_RC00/aw_blend/favicon.ico"
+      label: "Change Bid"
+    }
+  }
+
+  dimension: display_headline {
+    type: string
+    sql: CONCAT(
+      COALESCE(CONCAT(${headline}, "\n"),"")
+      , COALESCE(CONCAT(${headline_part1}, "\n"),"")) ;;
+  }
+
   measure: count {
-    type: number
-    sql: count(${ad_group_id}) * rand() / 5 ;;
-    drill_fields: [image_creative_name, business_name]
+    type: count_distinct
+    sql: ${ad_group_id} ;;
+    drill_fields: [detail*]
+  }
+
+  # ----- Detail ------
+  set: detail {
+    fields: [creative_id, status, ad_type, creative]
   }
 }
