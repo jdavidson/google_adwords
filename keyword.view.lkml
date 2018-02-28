@@ -58,7 +58,7 @@ view: keyword {
   dimension: cpc_bid {
     hidden: yes
     type: number
-    sql: ${TABLE}.CpcBid ;;
+    sql: cast(${TABLE}.CpcBid as int64) ;;
   }
 
   dimension: cpc_bid_source {
@@ -223,12 +223,12 @@ view: keyword {
 
   dimension: cpc_bid_usd {
     type: number
-    sql: coalesce((${cpc_bid} / 1000000), ${ad_group.cpc_bid_usd}) ;;
+    sql: coalesce((${cpc_bid}/1000000.0), ${ad_group.cpc_bid_usd}) ;;
   }
 
   dimension: cpm_bid_usd {
     type: number
-    sql: coalesce((${cpm_bid} / 1000000), ${ad_group.cpm_bid_usd}) ;;
+    sql: coalesce((${cpm_bid}/1000000.0), ${ad_group.cpm_bid_usd}) ;;
   }
 
   # ----- Detail ------
