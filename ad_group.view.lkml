@@ -94,8 +94,8 @@ view: ad_group {
 
   dimension: cpc_bid {
     hidden: yes
-    type: string
-    sql: ${TABLE}.CpcBid ;;
+    type: number
+    sql: cast(${TABLE}.CpcBid as int64) ;;
   }
 
   dimension: cpm_bid {
