@@ -23,7 +23,8 @@ view: base_quarter_stats {
   }
   dimension: _data_last_quarter {
     type: date_quarter
-    sql: DATE_ADD(CAST(CONCAT(${_data_quarter}, '-01') AS DATE), INTERVAL -1 QUARTER) ;;
+#     sql: DATE_ADD(CAST(CONCAT(${_data_quarter}, '-01') AS DATE), INTERVAL -1 QUARTER) ;;
+    sql: CAST(DATE_ADD(CAST(CONCAT(${_data_quarter}, '-01') AS DATE), INTERVAL -1 QUARTER) AS TIMESTAMP) ;;
   }
   measure: total_impressions {
     drill_fields: [total_impressions]
